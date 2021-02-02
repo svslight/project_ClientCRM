@@ -1,0 +1,2 @@
+class TeamPosition < ApplicationRecord
+end
