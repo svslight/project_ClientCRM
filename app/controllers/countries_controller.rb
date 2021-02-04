@@ -1,10 +1,12 @@
 class CountriesController < ApplicationController
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
 
-  expose :countries, -> { Country.all }
   expose :country
+  expose :countries, ->{ Country.all }
 
   def create
+    @exposed_country = profile.countries.new(country_params)
+
     if country.save
       redirect_to country_path(country)
     else

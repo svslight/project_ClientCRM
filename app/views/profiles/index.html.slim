@@ -1,4 +1,12 @@
-h3= 'Список членов организации'
+.bg-light.border-bottom
+  .row.d-flex.align-items-center.py-3
+    .col-1
+    .col-6
+      h4= 'Список членов организации'
+    .col-4
+      nav.nav.justify-content-end
+        p= link_to 'Добавить клиента', new_profile_path, class: 'btn btn-success'
+    .col-1
 
-ul
+ul.list-group.list-group-flush
   = render profiles

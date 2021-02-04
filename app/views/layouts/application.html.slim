@@ -11,7 +11,8 @@ html
 
   body
     = render 'shared/nav'
-    = yield
 
-    p.notice = notice
-    p.alert = alert    
+    .container.bg-light.shadow
+      = yield
+      p.notice = notice
+      p.alert = alert    

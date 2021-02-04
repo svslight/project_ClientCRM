@@ -1,12 +1,14 @@
 class ProfilesController < ApplicationController
-    before_action :authenticate_user!
+    before_action :authenticate_user!, except: %i[index show]
 
-    expose :profiles, -> { Profile.all }
+    expose :profiles, ->{ Profile.all }
     expose :profile
   
     def create
+      @exposed_profile = current_user.profiles.new(profile_params)
+
       if profile.save
-        redirect_to profile_path(profile)
+        redirect_to profile_path(profile), notice: 'Client successfully created.'
       else
         render :new
       end
@@ -14,7 +16,11 @@ class ProfilesController < ApplicationController
   
     def update
       if profile.update(profile_params)
-        redirect_to country_path(country)
+        if params[:profile][:make_user] == true
+          @user=User.new(profile_id: profile.id, email: profile.email, password: '123456', password_confirmation: '123456' )
+          @user.save!
+        end
+        redirect_to profile_path(profile)
       else
         render :edit
       end
@@ -28,8 +34,10 @@ class ProfilesController < ApplicationController
     private
   
     def profile_params
-      params.require(:profile).permit(:name, :surname, :patronymic, :birthdate, :city, 
-                                      :phon, :skype, :entry_date, :lesson_number,
-                                      :communicant, :communicant_date, :comments)
+      params.require(:profile).permit(:name, :surname, :patronymic, :birthdate, :city, :address, 
+                                      :phon, :skype, :entry_date, :lesson_number, :email,
+                                      :communicant_date, :comments, :country_id, :client_status_id,
+                                      :group_id, :group_position_id, :team_project_id, :team_position_id,
+                                      :make_user)
     end
 end
