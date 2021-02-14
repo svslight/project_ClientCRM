@@ -1,5 +1,5 @@
-= form_with model: profile do |f|
-  = render 'shared/errors', resource: profile
+= form_with model: client do |f|
+  = render 'shared/errors', resource: client
 
   .form-group
   = f.label 'Статус клиента'
@@ -83,4 +83,4 @@
   
   br
   p= f.submit action_name() == 'edit' ? 'Сохранить' : 'Создать', class: 'btn btn-success'
-  p= link_to 'Назад', profiles_path, class: 'btn btn-success'
+  p= link_to 'Назад', clients_path, class: 'btn btn-success'

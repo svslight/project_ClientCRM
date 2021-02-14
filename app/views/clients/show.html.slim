@@ -1,0 +1,22 @@
+.row.d-flex.justify-content-center
+  .col-10
+    .row 
+      .col-10
+        h5.mt-4 = 'Информация о клиенте'
+    .row      
+      .col-11.mt-4
+        p= client.surname
+        p= client.name
+        p= client.patronymic
+        p= client.birthdate
+        p= client.city
+        p= client.address
+        p= client.email
+        p= client.phon
+        p= client.skype
+        p= client.entry_date
+        p= client.lesson_number
+        p= client.communicant_date
+
+br
+p= link_to 'Назад', clients_path, class: 'btn btn-success'

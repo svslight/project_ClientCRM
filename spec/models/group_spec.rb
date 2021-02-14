@@ -1,5 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Group, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should have_many(:clients).dependent(:destroy) }
+  it { should belong_to(:country) }
+  it { should belong_to(:group_status) }
 end

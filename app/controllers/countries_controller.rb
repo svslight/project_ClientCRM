@@ -5,7 +5,7 @@ class CountriesController < ApplicationController
   expose :countries, ->{ Country.all }
 
   def create
-    @exposed_country = profile.countries.new(country_params)
+    @exposed_country = client.countries.new(country_params)
 
     if country.save
       redirect_to country_path(country)

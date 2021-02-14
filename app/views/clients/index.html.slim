@@ -5,8 +5,8 @@
       h4= 'Список членов организации'
     .col-4
       nav.nav.justify-content-end
-        p= link_to 'Добавить клиента', new_profile_path, class: 'btn btn-success'
+        p= link_to 'Добавить клиента', new_client_path, class: 'btn btn-success'
     .col-1
 
 ul.list-group.list-group-flush
-  = render profiles
+  = render clients
