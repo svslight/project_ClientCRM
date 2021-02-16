@@ -1,24 +1,28 @@
 class ClientsController < ApplicationController
-  before_action :authenticate_user!, except: %i[index show]
+
+  # before_action :authenticate_user!, except: %i[index show]
+  before_action :load_client, only: [:update, :destroy]
 
   expose :clients, ->{ Client.all }
   expose :client
 
   def create
-    # @exposed_client = current_user.client.new(client_params)
-
     if client.save
+      if params[:client][:make_user]
+        @user=User.new(client_id: client.id, email: client.email, password: '123456', password_confirmation: '123456' )
+        @user.save
+      end
       redirect_to client_path(client), notice: 'Client successfully created.'
     else
       render :new
     end
   end
 
-  def update
+  def update   
     if client.update(client_params)
       if params[:client][:make_user]
         @user=User.new(client_id: client.id, email: client.email, password: '123456', password_confirmation: '123456' )
-        @user.save!
+        @user.save
       end
       redirect_to client_path(client)
     else
@@ -32,6 +36,10 @@ class ClientsController < ApplicationController
   end
 
   private
+
+  def load_client
+    @client = Client.find(params[:id])
+  end
 
   def client_params
     params.require(:client).permit(:name, :surname, :patronymic, :birthdate, :city, :address, 

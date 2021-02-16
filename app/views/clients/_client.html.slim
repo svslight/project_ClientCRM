@@ -1,14 +1,14 @@
 li.list-group-item id = "client-#{client.id}"
   .row.d-flex.align-items-center
     .col-1
-    .col-7
-      = client.surname
-      = ' '
-      = client.name
-      = ' '
-      = client.patronymic
+    .col-6
+      table#table.table-hover.table-sm
+        .tr
+          td= client.surname
+          td= client.name
+          td= client.patronymic
 
-    .col-4
+    .col-5
       nav.nav.justify-content-end
         = link_to 'Show', client, class: 'btn btn-info mr-4'
         = link_to 'Edit', edit_client_path(client.id), class: 'btn btn-info mr-4'

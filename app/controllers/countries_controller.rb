@@ -1,12 +1,12 @@
 class CountriesController < ApplicationController
-  before_action :authenticate_user!
-
-  expose :country
+  
+  # before_action :authenticate_user!, except: %i[index show]
+  before_action :load_country, only: [:update, :destroy]
+  
   expose :countries, ->{ Country.all }
+  expose :country
 
   def create
-    @exposed_country = client.countries.new(country_params)
-
     if country.save
       redirect_to country_path(country)
     else
@@ -28,6 +28,10 @@ class CountriesController < ApplicationController
   end
 
   private
+
+  def load_country
+    @country = Country.find(params[:id])
+  end
 
   def country_params
     params.require(:country).permit(:name)
