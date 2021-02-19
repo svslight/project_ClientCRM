@@ -1,10 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe ClientsController, type: :controller do
-
+  let(:user) { create :user }
   let(:client) { create(:client) }
     
   describe 'POST #create' do
+    before { login(user) }
+
     context 'with valid attributes' do
       it 'save a new client in the database' do
         expect { post :create, params: { client: attributes_for(:client) } }.to change(Client, :count).by(1)
@@ -28,7 +30,9 @@ RSpec.describe ClientsController, type: :controller do
     end
   end
 
-  describe 'PATCH #update' do  
+  describe 'PATCH #update' do
+    before { login(user) }
+
     context 'with valid attributes' do
       it 'assigns the requested client to @client' do
         patch :update, params: { id: client, client: attributes_for(:client) }
@@ -64,6 +68,7 @@ RSpec.describe ClientsController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
+    before { login(user) }
     let!(:client) { create(:client) }
 
     it 'deletes the client' do

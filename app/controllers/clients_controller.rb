@@ -1,6 +1,6 @@
 class ClientsController < ApplicationController
 
-  # before_action :authenticate_user!, except: %i[index show]
+  before_action :authenticate_user!, except: %i[index show]
   before_action :load_client, only: [:update, :destroy]
 
   expose :clients, ->{ Client.all }
