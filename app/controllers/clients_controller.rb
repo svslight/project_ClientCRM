@@ -9,8 +9,7 @@ class ClientsController < ApplicationController
   def create
     if client.save
       if params[:client][:make_user]
-        @user=User.new(client_id: client.id, email: client.email, password: '123456', password_confirmation: '123456' )
-        @user.save
+        @user=User.create(client_id: client.id, email: client.email, password: '123456', password_confirmation: '123456' )
       end
       redirect_to client_path(client), notice: 'Client successfully created.'
     else
@@ -21,8 +20,7 @@ class ClientsController < ApplicationController
   def update   
     if client.update(client_params)
       if params[:client][:make_user]
-        @user=User.new(client_id: client.id, email: client.email, password: '123456', password_confirmation: '123456' )
-        @user.save
+        @user=User.create(client_id: client.id, email: client.email, password: '123456', password_confirmation: '123456' )
       end
       redirect_to client_path(client)
     else
