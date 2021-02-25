@@ -1,0 +1,86 @@
+= form_with model: client do |f|
+  = render 'shared/errors', resource: client
+
+  .form-group
+  = f.label 'Статус клиента'
+  = f.collection_select(:client_status_id, ClientStatus.all, :id, :name, {prompt: "Выберите статус клиента"}, {class: "form-control"})
+
+  .form-group
+  = f.label 'Страна '
+  = f.collection_select(:country_id, Country.all, :id, :name, {prompt: "Выберите страну"}, {class: "form-control"})
+
+  .form-group
+  = f.label 'Группа'
+  = f.collection_select(:group_id, Group.all, :id, :name, {prompt: "Выберите группу"}, {class: "form-control"})
+
+  .form-group
+  = f.label 'Должность в группе'
+  = f.collection_select(:group_position_id, GroupPosition.all, :id, :name, {prompt: "Выберите должность в группе"}, {class: "form-control"})
+
+  .form-group
+  = f.label 'Командный проект'
+  = f.collection_select(:team_project_id, TeamProject.all, :id, :name, {prompt: "Выберите командный проект"}, {class: "form-control"})
+
+  .form-group
+  = f.label 'Должность в команде'
+  = f.collection_select(:team_position_id, TeamPosition.all, :id, :name, {prompt: "Выберите должность в команде"}, {class: "form-control"})
+
+  .form-group
+  = f.label 'Имя'
+  = f.text_field :name, class: 'form-control'
+
+  .form-group
+  = f.label 'Фамилия'
+  = f.text_field :surname, class: 'form-control'
+
+  .form-group
+  = f.label 'Отчество'
+  = f.text_field :patronymic, class: 'form-control'
+
+  .form-group
+  = f.label 'Дата рождения'
+  = f.text_field :birthdate, class: 'form-control'
+
+  .form-group
+  = f.label 'Город'
+  = f.text_field :city, class: 'form-control'
+
+  .form-group
+  = f.label 'Адрес'
+  = f.text_field :address, class: 'form-control'
+
+  .form-group
+  = f.label 'Электронная почта'
+  = f.text_field :email, class: 'form-control'
+
+  .form-group
+  = f.label 'Телефон'
+  = f.text_field :phon, class: 'form-control'
+
+  .form-group
+  = f.label 'Скайп'
+  = f.text_field :skype, class: 'form-control'
+
+  .form-group
+  = f.label 'Дата вступления'
+  = f.text_field :entry_date, class: 'form-control'
+
+  .form-group
+  = f.label 'Номер урока'
+  = f.text_field :lesson_number, class: 'form-control'
+
+  .form-group
+  = f.label 'Причастник дата'
+  = f.text_field :communicant_date, class: 'form-control'
+
+  .form-group
+  = f.label 'Комментарий'
+  = f.text_area :comments, class: 'form-control'
+
+  .form-checkbox
+    = f.label 'Сделать пользователем'
+    = f.check_box :make_user, {}, true, false
+  
+  br
+  p= f.submit action_name() == 'edit' ? 'Сохранить' : 'Создать', class: 'btn btn-success'
+  p= link_to 'Назад', clients_path, class: 'btn btn-success'

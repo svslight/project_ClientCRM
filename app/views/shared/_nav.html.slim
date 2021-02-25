@@ -1,0 +1,11 @@
+nav.navbar.navbar-light style="background-color: #e3f2fd;"
+  .container
+    = link_to root_path, class: 'navbar-brand' do
+      |Клиентская CRM
+    div.ml-auto 
+      - if user_signed_in?
+        = link_to 'Выход', destroy_user_session_path, method: :delete
+      - else
+        = link_to 'Вход', new_user_session_path, class: 'btn btn-outline-success mr-3'
+        = link_to 'Регистрация', new_user_registration_path, class: 'btn btn-outline-success'
+      

@@ -1,0 +1,12 @@
+.bg-light.border-bottom
+  .row.d-flex.align-items-center.py-3
+    .col-1
+    .col-6
+      h4= 'Список стран'
+    .col-4
+      nav.nav.justify-content-end
+        p= link_to 'Добавить страну', new_country_path, class: 'btn btn-success'
+    .col-1
+
+ul.list-group.list-group-flush
+  = render countries

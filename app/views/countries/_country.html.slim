@@ -1,0 +1,13 @@
+li.list-group-item
+  .row.d-flex.align-items-center
+    .col-1
+    .col-6
+      table#table.table-hover.table-sm
+        .tr
+          td= country.name
+
+    .col-5
+      nav.nav.justify-content-end
+        = link_to 'Show', country, class: 'btn btn-info mr-4'
+        = link_to 'Edit', edit_country_path(country.id), class: 'btn btn-info mr-4'
+        = link_to 'Delete', country, method: :delete, class: 'btn btn-info'
