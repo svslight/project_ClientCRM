@@ -1,86 +1,109 @@
-= form_with model: client do |f|
+
+= form_with model: client, class: 'hidden', html: { id: "edit-client-#{client.id}", data: { remote: true } } do |f|
   = render 'shared/errors', resource: client
 
-  .form-group
-  = f.label 'Статус клиента'
-  = f.collection_select(:client_status_id, ClientStatus.all, :id, :name, {prompt: "Выберите статус клиента"}, {class: "form-control"})
+  .row.d-flex.align-items-center
+    .col-10
+      .row
+        .col-2
+        .col-10
+          h5 Форма редактирования клиента
+          table#table.table-hover.table-sm
+            .tr          
+              td= f.label :country_id, 'Страна'
+              td= f.collection_select(:country_id, Country.all, :id, :name, {prompt: "Выберите страну"})
 
-  .form-group
-  = f.label 'Страна '
-  = f.collection_select(:country_id, Country.all, :id, :name, {prompt: "Выберите страну"}, {class: "form-control"})
+            .form-checkbox
+              td= f.label 'Назначить клиента пользователем'
+              td= f.check_box :make_user, {}, true, false 
+      .row
+        .col-2
+        .col-10
+          table#table.table-hover.table-sm
+            .tr
+              td= f.label :surname, 'Фамилия'
+              td= f.text_field :surname
 
-  .form-group
-  = f.label 'Группа'
-  = f.collection_select(:group_id, Group.all, :id, :name, {prompt: "Выберите группу"}, {class: "form-control"})
+              td= f.label :name, 'Имя'
+              td= f.text_field :name             
 
-  .form-group
-  = f.label 'Должность в группе'
-  = f.collection_select(:group_position_id, GroupPosition.all, :id, :name, {prompt: "Выберите должность в группе"}, {class: "form-control"})
+              td= f.label :patronymic, 'Отчество'  
+              td= f.text_field :patronymic
+      .row
+        .col-2
+        .col-10
+          table#table.table-hover.table-sm
+            .tr          
+              td= f.label :birthdate, 'Дата рождения'
+              td= f.text_field :birthdate
 
-  .form-group
-  = f.label 'Командный проект'
-  = f.collection_select(:team_project_id, TeamProject.all, :id, :name, {prompt: "Выберите командный проект"}, {class: "form-control"})
+              td= f.label :city, 'Город' 
+              td= f.text_field :city
 
-  .form-group
-  = f.label 'Должность в команде'
-  = f.collection_select(:team_position_id, TeamPosition.all, :id, :name, {prompt: "Выберите должность в команде"}, {class: "form-control"})
+              td= f.label :address, 'Адрес' 
+              td= f.text_field :address
+      .row
+        .col-2
+        .col-10
+          table#table.table-hover.table-sm
+            .tr
+              td= f.label :email, 'Почта' 
+              td= f.text_field :email
 
-  .form-group
-  = f.label 'Имя'
-  = f.text_field :name, class: 'form-control'
+              td= f.label :phon, 'Телефон'
+              td= f.text_field :phon
 
-  .form-group
-  = f.label 'Фамилия'
-  = f.text_field :surname, class: 'form-control'
+              td= f.label :skype, 'Скайп'
+              td= f.text_field :skype
+      .row
+        .col-2
+        .col-10
+          table#table.table-hover.table-sm         
+            .tr
+              td= f.label :client_status_id, 'Статус клиента'
+              td= f.collection_select(:client_status_id, ClientStatus.all, :id, :name, {prompt: "Выберите статус клиента"})
 
-  .form-group
-  = f.label 'Отчество'
-  = f.text_field :patronymic, class: 'form-control'
+              td= f.label :entry_date, 'Дата вступления'
+              td= f.text_field :entry_date
+      .row
+        .col-2
+        .col-10
+          table#table.table-hover.table-sm
+            .tr
+              td= f.label :group_id, 'Группа'
+              td= f.collection_select(:group_id, Group.all, :id, :name, {prompt: "Выберите группу"})
 
-  .form-group
-  = f.label 'Дата рождения'
-  = f.text_field :birthdate, class: 'form-control'
+              td= f.label :group_position_id, 'Должность в группе'
+              td= f.collection_select(:group_position_id, GroupPosition.all, :id, :name, {prompt: "Выберите должность в группе"})
+      .row
+        .col-2
+        .col-10
+          table#table.table-hover.table-sm
+            .tr
+              td= f.label :team_project_id, 'Командный проект'
+              td= f.collection_select(:team_project_id, TeamProject.all, :id, :name, {prompt: "Выберите командный проект"})
+      
+              td= f.label :team_position_id, 'Должность в команде'
+              td= f.collection_select(:team_position_id, TeamPosition.all, :id, :name, {prompt: "Выберите должность в команде"})
+      .row
+        .col-2
+        .col-10
+          table#table.table-hover.table-sm
+            .tr   
+              td= f.label :lesson_number, 'Номер урока' 
+              td= f.text_field :lesson_number
 
-  .form-group
-  = f.label 'Город'
-  = f.text_field :city, class: 'form-control'
+              td= f.label :communicant_date, 'Причастник дата'
+              td= f.text_field :communicant_date
+      .row
+        .col-2
+        .col-10
+          td= f.label :comments, 'Комментарий'
+          td= f.text_area :comments, class: 'form-control'
 
-  .form-group
-  = f.label 'Адрес'
-  = f.text_field :address, class: 'form-control'
-
-  .form-group
-  = f.label 'Электронная почта'
-  = f.text_field :email, class: 'form-control'
-
-  .form-group
-  = f.label 'Телефон'
-  = f.text_field :phon, class: 'form-control'
-
-  .form-group
-  = f.label 'Скайп'
-  = f.text_field :skype, class: 'form-control'
-
-  .form-group
-  = f.label 'Дата вступления'
-  = f.text_field :entry_date, class: 'form-control'
-
-  .form-group
-  = f.label 'Номер урока'
-  = f.text_field :lesson_number, class: 'form-control'
-
-  .form-group
-  = f.label 'Причастник дата'
-  = f.text_field :communicant_date, class: 'form-control'
-
-  .form-group
-  = f.label 'Комментарий'
-  = f.text_area :comments, class: 'form-control'
-
-  .form-checkbox
-    = f.label 'Сделать пользователем'
-    = f.check_box :make_user, {}, true, false
-  
-  br
-  p= f.submit action_name() == 'edit' ? 'Сохранить' : 'Создать', class: 'btn btn-success'
-  p= link_to 'Назад', clients_path, class: 'btn btn-success'
+      .row
+        .col-2
+        .col-10      
+          br
+          p= f.submit action_name() == 'edit' || create ? 'Сохранить' : 'Создать', class: 'btn btn-success'
+          p= link_to 'Назад', clients_path, class: 'btn btn-success'

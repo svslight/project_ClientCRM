@@ -8,29 +8,30 @@ class ClientsController < ApplicationController
 
   def create
     if client.save
-      if params[:client][:make_user]
-        @user=User.create(client_id: client.id, email: client.email, password: '123456', password_confirmation: '123456' )
-      end
-      redirect_to client_path(client), notice: 'Client successfully created.'
+      @user=User.create(client_id: client.id, email: client.email, password: '123456', password_confirmation: '123456' ) if params[:client][:make_user]
+      redirect_to client_path(client), notice: 'Client successfully created'
     else
       render :new
     end
   end
 
-  def update   
-    if client.update(client_params)
-      if params[:client][:make_user]
-        @user=User.create(client_id: client.id, email: client.email, password: '123456', password_confirmation: '123456' )
-      end
-      redirect_to client_path(client)
-    else
-      render :edit
-    end
+  def update
+    client.update(client_params)
+    @user=User.create(client_id: client.id, email: client.email, password: '123456', password_confirmation: '123456' ) if params[:client][:make_user]
+
+    # if client.update(client_params)
+    #   @user=User.create(client_id: client.id, email: client.email, password: '123456', password_confirmation: '123456' ) if params[:client][:make_user]
+
+    #   # redirect_to client_path(client)
+    #   render 'update' and return
+    # else
+    #   render :edit
+    # end
   end
 
   def destroy
     client.destroy
-    redirect_to clients_path
+    redirect_to clients_path, notice: 'Client was successfully deleted.'
   end
 
   private
