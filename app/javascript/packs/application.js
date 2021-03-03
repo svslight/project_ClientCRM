@@ -9,6 +9,13 @@ require("@rails/activestorage").start()
 require("channels")
 require('jquery')
 require("packs/clients")
+import 'bootstrap'
+import '../stylesheets/application'
+
+document.addEventListener("turbolinks:load", () => {
+  $('[data-toggle="tooltip"]').tooltip();
+  $('[data-toggle="popover"]').popover()
+})
 
 globalThis.jQuery = jQuery;
 globalThis.$ = $;
