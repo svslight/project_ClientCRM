@@ -1,11 +1,10 @@
-= form_with model: country do |f|
+= form_with model: country, class: 'hidden', html: { id: "edit-country-#{country.id}", data: { remote: true } } do |f|
   = render 'shared/errors', resource: country
 
-  .form-group
-  = f.label 'Страна'
-  = f.text_field :name, class: 'form-control'
+  .row
+    .col-5
+      = f.text_field :name, class: 'form-control'
 
-  br
-  p= f.submit action_name() == 'edit' ? 'Сохранить' : 'Создать', class: 'btn btn-success'
-  p= link_to 'Назад', clients_path, class: 'btn btn-success'
-
+    .col-7
+      = f.submit 'Сохранить', class: 'btn btn-success mr-2'
+      = link_to 'Отменить', countries_cancel_path(id: country), html_options={ class: 'btn btn-success cancel-country', data: {id: country.id, remote: true} }

@@ -1,13 +1,16 @@
-li.list-group-item
+li.list-group-item id= "country-#{country.id}"
   .row.d-flex.align-items-center
     .col-1
-    .col-6
+    .col-5
       table#table.table-hover.table-sm
         .tr
-          td= country.name
+          td
+            span id= "name-#{country.id}"
+              = country.name
+            = render partial: 'form', locals: { country: country }
 
     .col-5
-      nav.nav.justify-content-end
-        = link_to 'Show', country, class: 'btn btn-info mr-4'
-        = link_to 'Edit', edit_country_path(country.id), class: 'btn btn-info mr-4'
-        = link_to 'Delete', country, method: :delete, class: 'btn btn-info'
+      nav.nav.justify-content-end.btn-group-sm
+        = link_to 'Show', country, class: 'btn btn-info mr-4'        
+        = link_to 'Edit', '#', class: 'edit-country-link btn btn-info mr-4', data: { country_id: country.id }
+        = link_to 'Delete', country, method: :delete, remote: true, class: 'btn btn-info'
