@@ -2,15 +2,15 @@ nav.navbar.navbar-light style="background-color: #e3f2fd;"
   .container
     = link_to 'Клиентская CRM', root_path, class: 'navbar-brand mr-4', style: 'color: #007bff'
 
-    div.btn-group.btn-group-sm role="group"
-      button#navbarDropdown.btn.btn-outline-primary.dropdown-toggle type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" Справочники
-      div.dropdown-menu aria-labelledby="navbarDropdown"
-        = link_to 'Стран', countries_path, style: 'color: #007bff', class: "dropdown-item"
-        / div.dropdown-divider
-        / .dropdown-item
-          / = link_to 'Выход из CRM', destroy_user_session_path, method: :delete, style: 'color: #007bff', class: "dropdown-item"
+    div.btn-group
+      button.btn.btn-outline-primary.dropdown-toggle type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" Справочники
+      ul.dropdown-menu
+        li= link_to 'Стран', countries_path, style: 'color: #007bff', class: "dropdown-item"
+        li= link_to 'Статус клиента', '#', style: 'color: #007bff', class: "dropdown-item"
+        li.dropdown-divider
+        li= link_to 'Выход из CRM', destroy_user_session_path, method: :delete, style: 'color: #007bff', class: "dropdown-item"
 
-    div.ml-auto.btn-group-sm
+    div.ml-auto
       - if user_signed_in?        
         = link_to 'Выход', destroy_user_session_path, method: :delete, class: 'btn btn-outline-primary'
       - else

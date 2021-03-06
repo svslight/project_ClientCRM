@@ -1,12 +1,12 @@
 / = form_with model: client do
 
-.bg-light.border-bottom
-  .row.d-flex.align-items-center.py-3
-    .col-1
-    .col-6
-      h5 Форма редактирования клиента
+/ .bg-light.border-bottom
+/   .row.d-flex.align-items-center.py-3
+/     .col-1
+/     .col-6
+/       h5 Форма редактирования клиента
 
-      = render partial: 'form', locals: { client: client }
+/       = render partial: 'form', locals: { client: client }
       
-      p= link_to 'Назад', clients_path, class: 'btn btn-success'
+/       p= link_to 'Назад', clients_path, class: 'btn btn-success'
     

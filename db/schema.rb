@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_16_103950) do
+ActiveRecord::Schema.define(version: 2021_03_06_200435) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 2021_02_16_103950) do
   create_table "clients", force: :cascade do |t|
     t.string "name", null: false
     t.string "surname", null: false
-    t.string "patronymic", null: false
-    t.date "birthdate", null: false
+    t.string "patronymic"
+    t.date "birthdate"
     t.string "city", null: false
     t.string "address"
     t.string "email", null: false
@@ -35,12 +35,12 @@ ActiveRecord::Schema.define(version: 2021_02_16_103950) do
     t.integer "lesson_number"
     t.date "communicant_date"
     t.string "comments"
-    t.bigint "country_id", null: false
-    t.bigint "client_status_id", null: false
-    t.bigint "group_id", null: false
-    t.bigint "group_position_id", null: false
-    t.bigint "team_project_id", null: false
-    t.bigint "team_position_id", null: false
+    t.bigint "country_id"
+    t.bigint "client_status_id"
+    t.bigint "group_id"
+    t.bigint "group_position_id"
+    t.bigint "team_project_id"
+    t.bigint "team_position_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["client_status_id"], name: "index_clients_on_client_status_id"

@@ -9,7 +9,7 @@ class ClientsController < ApplicationController
   def create
     if client.save
       @user=User.create(client_id: client.id, email: client.email, password: '123456', password_confirmation: '123456' ) if params[:client][:make_user]
-      redirect_to client_path(client), notice: 'Client successfully created'
+      redirect_to client_path(client), notice: 'Client was successfully created'
     else
       render :new
     end
@@ -17,16 +17,11 @@ class ClientsController < ApplicationController
 
   def update
     client.update(client_params)
-    @user=User.create(client_id: client.id, email: client.email, password: '123456', password_confirmation: '123456' ) if params[:client][:make_user]
-
-    # if client.update(client_params)
-    #   @user=User.create(client_id: client.id, email: client.email, password: '123456', password_confirmation: '123456' ) if params[:client][:make_user]
-
-    #   # redirect_to client_path(client)
-    #   render 'update' and return
-    # else
-    #   render :edit
-    # end
+    if params[:client][:make_user]
+      @user=User.create(client_id: client.id, email: client.email, password: '123456', password_confirmation: '123456' ) if !User.where(client_id: client.id).exists?
+    else
+      User.find_by(client_id: client.id).destroy if User.where(client_id: client.id).exists?
+    end
   end
 
   def destroy

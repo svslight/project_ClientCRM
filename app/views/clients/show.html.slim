@@ -3,20 +3,85 @@
     .row 
       .col-10
         h5.mt-4 = 'Информация о клиенте'
-    .row      
-      .col-11.mt-4
-        p= client.surname
-        p= client.name
-        p= client.patronymic
-        p= client.birthdate
-        p= client.city
-        p= client.address
-        p= client.email
-        p= client.phon
-        p= client.skype
-        p= client.entry_date
-        p= client.lesson_number
-        p= client.communicant_date
 
-br
-p= link_to 'Назад', clients_path, class: 'btn btn-success'
+    .client-errors
+      = render 'shared/errors', resource: client
+
+    .row
+      .col-12.mt-3
+        p= Country.find(client.country_id).name
+
+    .row
+      .col-5
+        table#table.table-hoverю.table-sm
+          .tr
+            td= client.surname
+            td= client.name
+            td= client.patronymic
+      .col-7
+        ul.list-group.list-group-horizontal
+          li.list-group-item= 'Дата рождения:'
+          li.list-group-item= client.birthdate
+    .row
+      .col-5
+        table#table.table-hover.mt-3
+          .tr
+            td= ClientStatus.find(client.client_status_id).name
+      .col-7
+        ul.list-group.list-group-horizontal
+          li.list-group-item= 'Назначен пользователем:'
+          li.list-group-item= User.where(client_id: client.id).exists?
+    .row
+      .col-1.mt-4
+        p= 'Адрес:'
+      .col-11.mt-3
+        ul.list-group.list-group-horizontal
+          li.list-group-item= client.city
+          li.list-group-item= client.address
+    .row
+      .col-1.mt-4
+        p= 'Эл.почта:'
+      .col-2.mt-3
+        ul.list-group.list-group-horizontal
+          li.list-group-item= client.email
+      .col-1.mt-4
+        p= 'Телефон:'
+      .col-2.mt-3
+        ul.list-group.list-group-horizontal
+          li.list-group-item= client.phon
+      .col-1.mt-4
+        p= 'Скайп:'
+      .col-2.mt-3
+        ul.list-group.list-group-horizontal
+          li.list-group-item= client.skype
+
+    .row
+      .col-2.mt-4
+        p= 'Дата вступления:'
+      .col-2.mt-3
+        ul.list-group.list-group-horizontal
+          li.list-group-item= client.entry_date
+      .col-1.mt-4
+        p= 'Урок:'
+      .col-1.mt-3
+        ul.list-group.list-group-horizontal          
+          li.list-group-item= client.lesson_number
+      .col-2.mt-4
+        p= 'Причастник:'
+      .col-3.mt-3
+        ul.list-group.list-group-horizontal
+          li.list-group-item= client.communicant_date
+    .row
+      .col-6.mt-3
+        h6 Группа. Должность в группе:
+        ul.list-group.list-group-horizontal
+          li.list-group-item= Group.find(client.group_id).name        
+          li.list-group-item= GroupPosition.find(client.group_position_id).name
+      .col-6.mt-3
+        h6 Команда. Должность в команде:
+        ul.list-group.list-group-horizontal
+          li.list-group-item= TeamProject.find(client.team_project_id).name
+          li.list-group-item= TeamPosition.find(client.team_position_id).name
+
+    br
+    p= link_to 'Назад', clients_path, class: 'btn btn-success'

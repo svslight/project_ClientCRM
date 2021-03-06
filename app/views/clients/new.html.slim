@@ -3,12 +3,11 @@
   .col-11
     h5.mt-2 Ввод информации о клиенте
 
-    p= form_with model: client, local: true do |f|
-    
+    p= form_with model: client, local: true do |f|    
       p= render 'shared/errors', resource: client
+
       .row
-        .col-1
-        .col-11
+        .col-12
           table#table.table-hover.table-sm
             .tr          
               td= f.label :country_id, 'Страна'
@@ -18,8 +17,7 @@
               td= f.label 'Назначить клиента пользователем'
               td= f.check_box :make_user, {}, true, false 
       .row
-        .col-1
-        .col-11
+        .col-12
           table#table.table-hover.table-sm
             .tr
               td= f.label :surname, 'Фамилия'
@@ -31,8 +29,7 @@
               td= f.label :patronymic, 'Отчество'  
               td= f.text_field :patronymic
       .row
-        .col-1
-        .col-11
+        .col-12
           table#table.table-hover.table-sm
             .tr          
               td= f.label :birthdate, 'Дата рождения'
@@ -44,8 +41,7 @@
               td= f.label :address, 'Адрес' 
               td= f.text_field :address
       .row
-        .col-1
-        .col-11
+        .col-12
           table#table.table-hover.table-sm
             .tr
               td= f.label :email, 'Почта' 
@@ -57,8 +53,7 @@
               td= f.label :skype, 'Скайп'
               td= f.text_field :skype
       .row
-        .col-1
-        .col-11
+        .col-12
           table#table.table-hover.table-sm         
             .tr
               td= f.label :client_status_id, 'Статус клиента'
@@ -67,8 +62,7 @@
               td= f.label :entry_date, 'Дата вступления'
               td= f.text_field :entry_date
       .row
-        .col-1
-        .col-11
+        .col-12
           table#table.table-hover.table-sm
             .tr
               td= f.label :group_id, 'Группа'
@@ -77,8 +71,7 @@
               td= f.label :group_position_id, 'Должность в группе'
               td= f.collection_select(:group_position_id, GroupPosition.all, :id, :name, {prompt: "Выберите должность в группе"})
       .row
-        .col-1
-        .col-11
+        .col-12
           table#table.table-hover.table-sm
             .tr
               td= f.label :team_project_id, 'Командный проект'
@@ -87,8 +80,7 @@
               td= f.label :team_position_id, 'Должность в команде'
               td= f.collection_select(:team_position_id, TeamPosition.all, :id, :name, {prompt: "Выберите должность в команде"})
       .row
-        .col-1
-        .col-11
+        .col-12
           table#table.table-hover.table-sm
             .tr   
               td= f.label :lesson_number, 'Номер урока' 
@@ -97,12 +89,10 @@
               td= f.label :communicant_date, 'Причастник дата'
               td= f.text_field :communicant_date
       .row
-        .col-1
-        .col-11
+        .col-12
           td= f.label :comments, 'Комментарий'
           td= f.text_area :comments, class: 'form-control'
    
       br
-      / p= f.submit action_name() == 'edit' || 'create' ? 'Сохранить' : 'Создать', class: 'btn btn-success'
-      p= f.submit 'Создать', class: 'btn btn-success'
-      p= link_to 'Назад', clients_path, class: 'btn btn-success'
+      = f.submit 'Создать', class: 'btn btn-success mr-3'
+      = link_to 'Отмена', clients_path, class: 'btn btn-success'
