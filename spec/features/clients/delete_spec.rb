@@ -9,9 +9,6 @@ feature 'Authorized user can delete client', %q(
   given(:user) { create(:user) }
   given!(:client) { create(:client) }
 
-  # given(:client_user) { create(:user) }
-  # given!(:other_question) { create(:question, author: other_user) }
-
   describe 'Authorized user' do
     background do
       sign_in(user)
@@ -32,7 +29,7 @@ feature 'Authorized user can delete client', %q(
       visit clients_path
       within("#client-#{client.id}") do
         expect(page).to have_content client.name
-        # expect(page).to_not have_link 'Delete'
+        expect(page).to_not have_link 'Delete'
       end
     end
   end

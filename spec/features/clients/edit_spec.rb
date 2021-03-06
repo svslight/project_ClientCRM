@@ -29,19 +29,18 @@ feature 'User can edit client', %q{
       within "#client-#{client.id}" do
         expect(page).to_not have_content client.name
         expect(page).to have_content 'Новое Имя'
-        # expect(page).to_not have_selector 'textarea'
       end
     end
 
-    # scenario 'edits client data with errors' do
-    #   click_on 'Edit'
-    #   fill_in 'Имя', with: ''
-    #   click_on 'Сохранить'
+    scenario 'edits client data with errors' do
+      click_on 'Edit'
+      fill_in 'Имя', with: ''
+      click_on 'Сохранить'
 
-    #   within "#client-#{client.id}" do
-    #     expect(page).to have_content client.name
-    #   end
-    #   expect(page).to have_content "Name can't be blank"
-    # end
+      within "#client-#{client.id}" do
+        expect(page).to have_content client.name
+      end
+      expect(page).to have_content "Name can't be blank"
+    end
   end
 end

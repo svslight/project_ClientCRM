@@ -5,7 +5,8 @@ feature 'User can create client', %q{
   I would like to be able to enter customer data.
 } do
   
-  given(:user) { create(:user) }
+  given(:user) { create(:user) } 
+  # given(:client) { create(:client) }
 
   describe 'Authenticated user' do
     background do
@@ -19,21 +20,16 @@ feature 'User can create client', %q{
 
       fill_in 'Имя', with: 'Имя'
       fill_in 'Фамилия', with: 'Фамилия'
-      fill_in 'Отчество', with: 'Отчество'
-      # fill_in 'Дата рождения', with: 'Дата рождения'
-      # fill_in 'Город', with: 'Город'
-      # fill_in 'Адрес', with: 'Адрес'
+      fill_in 'Город', with: 'Город'
+      fill_in 'Почта', with: 'Почта'
 
       click_on 'Создать'
 
+      expect(page).to have_content 'Client was successfully created'
       expect(page).to have_content 'Имя'
       expect(page).to have_content 'Фамилия'
-      expect(page).to have_content 'Отчество'
-      # expect(page).to have_content 'Дата рождения'
-      # expect(page).to have_content 'Город'
-      # expect(page).to have_content 'Адрес'
-
-      # expect(page).to have_content 'Client successfully created'
+      expect(page).to have_content 'Город'
+      expect(page).to have_content 'Почта'    
     end  
 
     scenario 'create a client with errors' do 
