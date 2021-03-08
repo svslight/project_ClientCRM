@@ -73,12 +73,13 @@ RSpec.describe CountriesController, type: :controller do
     let!(:country) { create(:country) }
 
     it 'deletes the country' do
-      expect { delete :destroy, params: { id: country } }.to change(Country, :count).by(-1)
+      expect { delete :destroy, params: { id: country }, format: :js }.to change(Country, :count).by(-1)
     end
 
     it 'redirects to index' do
-      delete :destroy, params: { id: country }
-      expect(response).to redirect_to countries_path
+      delete :destroy, params: { id: country }, format: :js
+      expect(response).to render_template :destroy
+      # expect(response).to redirect_to countries_path
     end
   end
 end
