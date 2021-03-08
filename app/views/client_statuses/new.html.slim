@@ -1,0 +1,11 @@
+
+= form_with model: client_status do
+
+/ = render 'shared/errors', resource: client_status
+
+/ = form_with model: client_status, local: true do |f|
+/   p
+/     = f.label :name, 'Статус клиента'
+/     = f.text_field :name
+
+/   p= f.submit 'Ask'
