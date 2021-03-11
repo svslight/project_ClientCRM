@@ -7,23 +7,25 @@ class ClientStatusesController < ApplicationController
 
   def create
     if client_status.save
-      redirect_to client_status_path(client_status) #, notice: 'ClientStatus successfully created'
+      redirect_to client_status_path(client_status), notice: 'ClientStatus successfully created'
     else
       render :new
     end
   end
 
   def update
-    if client_status.update(client_status_params)
-      redirect_to client_status_path(client_status) 
-    else
-      render :edit
-    end
+    client_status.update(client_status_params)
+
+    # if client_status.update(client_status_params)
+    #   redirect_to client_status_path(client_status) 
+    # else
+    #   render :edit
+    # end
   end
 
   def destroy
     client_status.destroy
-    redirect_to client_statuses_path #, notice: 'Status client was successfully deleted.'
+    # redirect_to client_statuses_path, notice: 'Client status was successfully deleted'
   end
 
   private

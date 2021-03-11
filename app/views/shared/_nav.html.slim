@@ -6,9 +6,9 @@ nav.navbar.navbar-light style="background-color: #e3f2fd;"
       button.btn.btn-outline-primary.dropdown-toggle type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" Справочники
       ul.dropdown-menu
         li= link_to 'Стран', countries_path, style: 'color: #007bff', class: "dropdown-item"
-        li= link_to 'Статус клиента', '#', style: 'color: #007bff', class: "dropdown-item"
-        li.dropdown-divider
-        li= link_to 'Выход из CRM', destroy_user_session_path, method: :delete, style: 'color: #007bff', class: "dropdown-item"
+        li= link_to 'Статус клиента', client_statuses_path, style: 'color: #007bff', class: "dropdown-item"
+        / li.dropdown-divider
+        / li= link_to 'Выход из CRM', destroy_user_session_path, method: :delete, style: 'color: #007bff', class: "dropdown-item"
 
     div.ml-auto
       - if user_signed_in?        

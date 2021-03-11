@@ -1,1 +1,10 @@
-h1= client_status.title
+.row.d-flex.justify-content-center
+  .col-7
+    .row 
+      .col-10
+        h5.my-4 = 'Информация о статусе клиента'
+    .row      
+      .col-5.mr-4
+        p= client_status.name
+    
+    = link_to 'Назад', client_statuses_path, class: 'btn btn-success'

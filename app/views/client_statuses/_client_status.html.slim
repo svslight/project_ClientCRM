@@ -1,0 +1,16 @@
+li.list-group-item id= "clientstatus-#{client_status.id}"
+  .row.d-flex.align-items-center
+    .col-1
+    .col-6
+      table#table.table-hover.table-sm
+        .tr
+          td
+            span id= "name-#{client_status.id}"
+              = client_status.name
+            = render partial: 'form', locals: { client_status: client_status }
+
+    .col-5
+      nav.nav.justify-content-end.btn-group-sm
+        = link_to 'Show', client_status, class: 'btn btn-info mr-4'
+        = link_to 'Edit', '#', class: 'edit-clientstatus-link btn btn-info mr-4', data: { clientstatus_id: client_status.id }
+        = link_to 'Delete', client_status, method: :delete, remote: true, class: 'btn btn-info'
