@@ -10,7 +10,7 @@ require("channels")
 require('jquery')
 require("./clients")
 require("./countries")
-require("./client_statuses")
+require("./statuses")
 import 'bootstrap'
 import '../stylesheets/application'
 

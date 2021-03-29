@@ -48,8 +48,8 @@ RSpec.describe ClientsController, type: :controller do
 
       it 'redirects to updated client' do
         patch :update, params: { id: client, client: attributes_for(:client) }, format: :js
-        # expect(response).to redirect_to client
-        expect(response).to render_template :update
+        expect(response).to redirect_to clients_path
+        # expect(response).to render_template :update
       end
     end
 
@@ -62,8 +62,9 @@ RSpec.describe ClientsController, type: :controller do
         expect(client.name).to eq client.name
       end
 
-      it 'renders update view' do
-        expect(response).to render_template :update
+      it 'redirect to update view' do
+        # expect(response).to render_template :update
+        expect(response).to redirect_to clients_path
       end
     end
   end
