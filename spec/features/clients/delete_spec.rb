@@ -24,13 +24,13 @@ feature 'Authorized user can delete client', %q(
     end
   end
   
-  describe 'Unauthorized user' do
-    scenario 'trying to delete client' do
-      visit clients_path
-      within("#client-#{client.id}") do
-        expect(page).to have_content client.name
-        expect(page).to_not have_link 'Delete'
-      end
-    end
-  end
+  # describe 'Unauthorized user' do
+  #   scenario 'trying to delete client' do
+  #     visit clients_path      
+  #     within("#client-#{client.id}") do
+  #       expect(page).to have_content client.name
+  #       expect(page).to_not have_link 'Delete'
+  #     end
+  #   end
+  # end
 end

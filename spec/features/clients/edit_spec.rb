@@ -14,7 +14,7 @@ feature 'User can edit client', %q{
     expect(page).to_not have_link 'Edit'
   end
 
-  describe 'Authenticated user', js: true do # js: true указывает capibara, что нужно запустить тест в реальном браузере
+  describe 'Authenticated user', js: true do
 
     background do
       sign_in(user)

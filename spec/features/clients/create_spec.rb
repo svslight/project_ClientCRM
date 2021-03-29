@@ -5,8 +5,7 @@ feature 'User can create client', %q{
   I would like to be able to enter customer data.
 } do
   
-  given(:user) { create(:user) } 
-  # given(:client) { create(:client) }
+  given(:user) { create(:user) }
 
   describe 'Authenticated user' do
     background do
@@ -17,7 +16,6 @@ feature 'User can create client', %q{
     end
 
     scenario 'create a client' do
-
       fill_in 'Имя', with: 'Имя'
       fill_in 'Фамилия', with: 'Фамилия'
       fill_in 'Город', with: 'Город'
