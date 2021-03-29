@@ -1,13 +1,16 @@
 class Client < ApplicationRecord
-  attr_accessor :make_user
+  attr_accessor :make_user, :ids
 
   belongs_to :country, optional: true
-  belongs_to :client_status, optional: true
   belongs_to :group, optional: true
   belongs_to :group_position, optional: true
   belongs_to :team_project, optional: true
   belongs_to :team_position, optional: true
-  has_many :users, dependent: :destroy
+  
+  has_one :user, dependent: :destroy  
+  
+  has_many :status_clients, dependent: :destroy
+  has_many :status, through: :status_clients
 
   validates :name, presence: true
   validates :surname, presence: true
