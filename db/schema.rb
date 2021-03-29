@@ -10,16 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_06_200435) do
+ActiveRecord::Schema.define(version: 2021_03_16_205652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "client_statuses", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
 
   create_table "clients", force: :cascade do |t|
     t.string "name", null: false
@@ -36,14 +30,12 @@ ActiveRecord::Schema.define(version: 2021_03_06_200435) do
     t.date "communicant_date"
     t.string "comments"
     t.bigint "country_id"
-    t.bigint "client_status_id"
     t.bigint "group_id"
     t.bigint "group_position_id"
     t.bigint "team_project_id"
     t.bigint "team_position_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["client_status_id"], name: "index_clients_on_client_status_id"
     t.index ["country_id"], name: "index_clients_on_country_id"
     t.index ["group_id"], name: "index_clients_on_group_id"
     t.index ["group_position_id"], name: "index_clients_on_group_position_id"
@@ -85,6 +77,21 @@ ActiveRecord::Schema.define(version: 2021_03_06_200435) do
     t.index ["group_status_id"], name: "index_groups_on_group_status_id"
   end
 
+  create_table "status_clients", force: :cascade do |t|
+    t.bigint "status_id", null: false
+    t.bigint "client_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["client_id"], name: "index_status_clients_on_client_id"
+    t.index ["status_id"], name: "index_status_clients_on_status_id"
+  end
+
+  create_table "statuses", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "team_positions", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -111,7 +118,6 @@ ActiveRecord::Schema.define(version: 2021_03_06_200435) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "clients", "client_statuses"
   add_foreign_key "clients", "countries"
   add_foreign_key "clients", "group_positions"
   add_foreign_key "clients", "groups"
@@ -119,5 +125,7 @@ ActiveRecord::Schema.define(version: 2021_03_06_200435) do
   add_foreign_key "clients", "team_projects"
   add_foreign_key "groups", "countries"
   add_foreign_key "groups", "group_statuses"
+  add_foreign_key "status_clients", "clients"
+  add_foreign_key "status_clients", "statuses"
   add_foreign_key "users", "clients"
 end
