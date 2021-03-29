@@ -8,80 +8,103 @@
       = render 'shared/errors', resource: client
 
     .row
-      .col-12.mt-3
-        p= Country.find(client.country_id).name
+      .col-4
+        = 'Клиент назначен пользователем?'
+      .col-8
+        = User.where(client_id: client.id).exists? ? 'Да' : 'Нет'
 
     .row
-      .col-5
-        table#table.table-hoverю.table-sm
-          .tr
-            td= client.surname
-            td= client.name
-            td= client.patronymic
-      .col-7
-        ul.list-group.list-group-horizontal
-          li.list-group-item= 'Дата рождения:'
-          li.list-group-item= client.birthdate
-    .row
-      .col-5
-        table#table.table-hover.mt-3
-          .tr
-            td= ClientStatus.find(client.client_status_id).name
-      .col-7
-        ul.list-group.list-group-horizontal
-          li.list-group-item= 'Назначен пользователем:'
-          li.list-group-item= User.where(client_id: client.id).exists?
-    .row
-      .col-1.mt-4
-        p= 'Адрес:'
-      .col-11.mt-3
-        ul.list-group.list-group-horizontal
-          li.list-group-item= client.city
-          li.list-group-item= client.address
-    .row
-      .col-1.mt-4
-        p= 'Эл.почта:'
-      .col-2.mt-3
-        ul.list-group.list-group-horizontal
-          li.list-group-item= client.email
-      .col-1.mt-4
-        p= 'Телефон:'
-      .col-2.mt-3
-        ul.list-group.list-group-horizontal
-          li.list-group-item= client.phon
-      .col-1.mt-4
-        p= 'Скайп:'
-      .col-2.mt-3
-        ul.list-group.list-group-horizontal
-          li.list-group-item= client.skype
+      .col-4
+        = 'Статус клиента:'
+      .col-8
+        - statuses = Status.find(client.status_clients.pluck(:status_id))
+        - statuses.each do |status|
+          i.fa.fa-user-circle style='font-size: 12px; margin: 0 10px 0 5px; color: blue;'
+          = status.name
 
     .row
-      .col-2.mt-4
-        p= 'Дата вступления:'
-      .col-2.mt-3
-        ul.list-group.list-group-horizontal
-          li.list-group-item= client.entry_date
-      .col-1.mt-4
-        p= 'Урок:'
-      .col-1.mt-3
-        ul.list-group.list-group-horizontal          
-          li.list-group-item= client.lesson_number
-      .col-2.mt-4
-        p= 'Причастник:'
-      .col-3.mt-3
-        ul.list-group.list-group-horizontal
-          li.list-group-item= client.communicant_date
+      .col-4 
+        = 'Страна:'
+      .col-8
+        = Country.find(client.country_id).name
+
     .row
-      .col-6.mt-3
-        h6 Группа. Должность в группе:
-        ul.list-group.list-group-horizontal
-          li.list-group-item= Group.find(client.group_id).name        
-          li.list-group-item= GroupPosition.find(client.group_position_id).name
-      .col-6.mt-3
-        h6 Команда. Должность в команде:
-        ul.list-group.list-group-horizontal
-          li.list-group-item= TeamProject.find(client.team_project_id).name
-          li.list-group-item= TeamPosition.find(client.team_position_id).name
+      .col-4
+        = 'ФИО:'    
+      .col-8
+        i.fa.fa-user-circle style='font-size: 12px; margin: 0 10px 0 5px; color: blue;'
+        = client.surname
+        = ' '
+        = client.name
+        = ' '
+        = client.patronymic
+
+    .row
+      .col-4
+        = 'Дата рождения:'
+      .col-8
+        = client.birthdate
+
+    .row
+      .col-4
+        = 'Место проживания:'
+      .col-8
+        i.fa.fa-address-card style='font-size: 12px; margin: 0 10px 0 5px; color: blue;'
+        = client.city
+        = ' '
+        = client.address
+
+    .row
+      .col-4
+        = 'Email-Skip-Phon:'
+      .col-8
+        i.fa.fa-envelope style='font-size: 12px; margin: 0 10px 0 5px; color: blue;'      
+        = client.email
+        i.fa.fa-skype style='font-size: 12px; margin: 0 10px 0 5px; color: blue;'
+        = client.skype
+        i.fa.fa-phone-square style='font-size: 12px; margin: 0 10px 0 5px; color: blue;'
+        = client.phon
+
+    .row
+      .col-4
+        = 'Дата вступления:'
+      .col-8
+        = client.entry_date
+
+    .row
+      .col-4
+        = 'Урок:'
+      .col-8
+        = client.lesson_number
+
+    .row
+      .col-4
+        = 'Причастник (дата):'
+      .col-8
+        = client.communicant_date
+
+    .row
+      .col-4
+        = 'Группа. Должность в группе:'
+      .col-8 
+        i.fa.fa-users style='font-size: 12px; margin: 0 10px 0 5px; color: blue;'
+        = Group.find(client.group_id).name
+        i.fa.fa-user style='font-size: 12px; margin: 0 10px 0 5px; color: blue;'
+        = GroupPosition.find(client.group_position_id).name
+    .row
+      .col-4
+        = 'Команда. Должность в команде:'
+      .col-8
+        i.fa.fa-users style='font-size: 12px; margin: 0 10px 0 5px; color: blue;'
+        = TeamProject.find(client.team_project_id).name
+        i.fa.fa-user style='font-size: 12px; margin: 0 10px 0 5px; color: blue;'
+        = TeamPosition.find(client.team_position_id).name
+    .row
+      .col-4 
+        = 'Комментарий:'
+      .col-8
+        i.fa.fa-comment style='font-size: 12px; margin: 0 10px 0 5px; color: blue;'
+        = client.comments
 
     br
-    p= link_to 'Назад', clients_path, class: 'btn btn-success'
+    p= link_to 'Вернуться к списку', clients_path, class: 'btn btn-success'
