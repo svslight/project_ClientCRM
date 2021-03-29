@@ -1,0 +1,2 @@
+class StatusClientsController < ApplicationController
+end

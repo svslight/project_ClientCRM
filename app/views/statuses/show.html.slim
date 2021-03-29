@@ -1,0 +1,11 @@
+.row.d-flex.justify-content-center
+  .col-7
+    .row 
+      .col-10
+        h5.my-4 = 'Информация о статусе клиента'
+    .row      
+      .col-5.mr-4
+        p= status.name
+
+br
+p= link_to 'Вернуться к списку', statuses_path, class: 'btn btn-success'
