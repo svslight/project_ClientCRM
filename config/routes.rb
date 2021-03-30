@@ -3,5 +3,8 @@ Rails.application.routes.draw do
 
   root to: "clients#index"
 
-  resources :clients,  :countries
+  match '/countries/cancel', to: 'countries#cancel', via: 'get'
+  
+  resources :clients, :countries, :statuses
+
 end

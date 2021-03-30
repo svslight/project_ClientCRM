@@ -1,6 +1,114 @@
 .row.d-flex.justify-content-center
-  .col-8
-    h3 Ввод информации о клиенте
+  .col-1
+  .col-11
+    h5.mt-2 Ввод информации о клиенте
+
+    p= form_with model: client, local: true do |f|    
+      p= render 'shared/errors', resource: client
+
+      .row
+        .col-12.form-checkbox          
+          = f.check_box :make_user, {}, true, false
+          = f.label 'Назначить клиента пользователем'
+
+      .row
+        .col-2
+          = f.label :status_id, 'Присвоить статус'
+        .col-3
+          = f.collection_select(:status_id, Status.all, :id, :name, {prompt: "Выбери статус клиента"}, { id: 'status-new'})
+          #statuses
+        .col-7
+          = f.text_field :ids, id: 'ids'
+
+      .row
+        .col-2
+          = f.label :country_id, 'Страна'
+        .col-10
+          = f.collection_select(:country_id, Country.all, :id, :name, {prompt: "Выбери страну"})
+
+      .row
+        .col-2
+          h7 ФИО
+        .col-10
+          = f.label :surname, 'Фамилия', class: "hidden"
+          = f.text_field :surname
+          = f.label :name, 'Имя', class: "hidden"
+          = f.text_field :name
+          = f.label :patronymic, 'Отчество', class: "hidden"
+          = f.text_field :patronymic
+
+      .row
+        .col-2
+          = f.label :birthdate, 'Дата рождения'
+        .col-10      
+          = f.text_field :birthdate
+
+      .row
+        .col-2          
+          h7 Место проживания
+        .col-10
+          = f.label :city, 'Город', class: "hidden"
+          = f.text_field :city
+          = f.label :address, 'Адрес', class: "hidden"
+          = f.text_field :address
+
+      .row
+        .col-2
+          h7 Email-Skip-Phon      
+        .col-10
+          = f.label :email, 'Почта', class: "hidden"
+          = f.text_field :email
+          = f.label :skype, 'Скайп', class: "hidden"
+          = f.text_field :skype
+          = f.label :phon, 'Телефон', class: "hidden"
+          = f.text_field :phon
+
+      .row
+        .col-2
+          = f.label :entry_date, 'Дата вступления'
+        .col-10
+          = f.text_field :entry_date
+
+      .row
+        .col-2
+          = f.label :group_id, 'Группа'
+        .col-10
+          = f.collection_select(:group_id, Group.all, :id, :name, {prompt: "Выбери группу"})
+      .row
+        .col-2
+          = f.label :group_position_id, 'Должность'
+        .col-10
+          = f.collection_select(:group_position_id, GroupPosition.all, :id, :name, {prompt: "Выбери должность в группе"})
+
+      .row
+        .col-2
+          = f.label :team_project_id, 'Командный проект'
+        .col-10
+          = f.collection_select(:team_project_id, TeamProject.all, :id, :name, {prompt: "Выбери командный проект"})
+      .row
+        .col-2      
+          = f.label :team_position_id, 'Должность'
+        .col-10
+          = f.collection_select(:team_position_id, TeamPosition.all, :id, :name, {prompt: "Выбери должность в команде"})
+
+      .row
+        .col-2  
+          = f.label :lesson_number, 'Номер урока'
+        .col-10
+          = f.text_field :lesson_number
+
+      .row
+        .col-2
+          = f.label :communicant_date, 'Причастник дата'
+        .col-10
+          = f.text_field :communicant_date
+
+      .row
+        .col-2
+          = f.label :comments, 'Комментарий'
+        .col-10
+          = f.text_area :comments, class: 'form-control'
    
-    = render partial: 'form'
-    
+      br
+      = f.submit 'Создать', class: 'btn btn-success mr-3'
+      = link_to 'Отменить', clients_path, class: 'btn btn-success'

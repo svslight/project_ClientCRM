@@ -5,4 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   belongs_to :client, optional: true
+
+  # def author?(resource)
+  #   self.client_id == resource.id
+  # end
 end

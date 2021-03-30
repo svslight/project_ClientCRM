@@ -1,0 +1,11 @@
+= form_with model: status, class: 'hidden', html: { id: "edit-status-#{status.id}", data: { remote: true } } do |f|
+  = render 'shared/errors', resource: status
+
+  .row
+    .col-5
+      = f.label :name, 'Статус клиента', class: "hidden"
+      = f.text_field :name, class: 'form-control'
+
+    .col-7.btn-group-sm.mt-1
+      = f.submit 'Сохранить', class: 'btn btn-success mr-2'
+      = link_to 'Отменить', statuses_path, class: 'btn btn-success'

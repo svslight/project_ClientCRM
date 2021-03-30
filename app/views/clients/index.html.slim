@@ -6,10 +6,9 @@
     .col-4
       nav.nav.justify-content-end
         p= link_to 'Добавить клиента', new_client_path, class: 'btn btn-success'
-    .col-1
 
 ul.list-group.list-group-flush
-  = render clients
-
-br
-= link_to 'Страны', countries_path, class: 'btn btn-info mr-4'
+  .client-errors
+    = render 'shared/errors', resource: client
+  .clients
+    = render clients

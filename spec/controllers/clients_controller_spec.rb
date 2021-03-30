@@ -35,34 +35,36 @@ RSpec.describe ClientsController, type: :controller do
 
     context 'with valid attributes' do
       it 'assigns the requested client to @client' do
-        patch :update, params: { id: client, client: attributes_for(:client) }
-        expect(assigns(:client)).to eq client
+        patch :update, params: { id: client, client: attributes_for(:client) }, format: :js
+        expect(assigns(:exposed_client)).to eq client
       end
            
       it 'changes client attributes' do
-        patch :update, params: { id: client, client: { name: 'new name' } }
+        patch :update, params: { id: client, client: { name: 'new name' } }, format: :js
         client.reload
 
         expect(client.name).to eq 'new name' 
       end
 
       it 'redirects to updated client' do
-        patch :update, params: { id: client, client: attributes_for(:client) }
-        expect(response).to redirect_to client
+        patch :update, params: { id: client, client: attributes_for(:client) }, format: :js
+        expect(response).to redirect_to clients_path
+        # expect(response).to render_template :update
       end
     end
 
     context 'with invalid attributes' do
-      before { patch :update, params: { id: client, client: attributes_for(:client, :invalid) } }
+      before { patch :update, params: { id: client, client: attributes_for(:client, :invalid) }, format: :js }
 
       it 'does not change client' do
         client.reload
         
-        expect(client.name).to eq 'MyString'
+        expect(client.name).to eq client.name
       end
 
-      it 're-renders edit' do
-        expect(response).to render_template :edit
+      it 'redirect to update view' do
+        # expect(response).to render_template :update
+        expect(response).to redirect_to clients_path
       end
     end
   end

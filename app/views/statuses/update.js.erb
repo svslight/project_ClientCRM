@@ -1,0 +1,6 @@
+$('.status-errors').html("<%= render 'shared/errors', resource: status %>");
+
+<% unless status.errors.present? %>
+  $('form#edit-status-' + <%= status.id %>).remove();
+  $('#status-' + <%= status.id %>).replaceWith("<%= j render status %>");
+<% end %>

@@ -1,30 +1,29 @@
 class CountriesController < ApplicationController
   
-  # before_action :authenticate_user!, except: %i[index show]
-  before_action :load_country, only: [:update, :destroy]
+  before_action :authenticate_user!, except: %i[index show]
+  before_action :load_country, only: [:update, :destroy, :cancel]
   
   expose :countries, ->{ Country.all }
   expose :country
 
   def create
     if country.save
-      redirect_to country_path(country)
+      redirect_to country_path(country), notice: 'Country successfully created'
     else
       render :new
     end
   end
 
   def update
-    if country.update(country_params)
-      redirect_to country_path(country)
-    else
-      render :edit
-    end
+    country.update(country_params)
+  end
+
+  def cancel
+    render json: @country
   end
 
   def destroy
-    country.destroy
-    redirect_to countries_path
+    country.destroy    
   end
 
   private

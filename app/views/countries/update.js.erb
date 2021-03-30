@@ -1,0 +1,7 @@
+
+$('.country-errors').html("<%= render 'shared/errors', resource: country %>");
+
+<% unless country.errors.present? %>
+  $('form#edit-country-' + <%= country.id %>).remove();
+  $('#country-' + <%= country.id %>).replaceWith("<%= j render country %>");
+<% end %>

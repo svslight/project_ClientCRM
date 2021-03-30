@@ -1,0 +1,8 @@
+$('.client-errors').html("<%= render 'shared/errors', resource: client %>");
+
+<% unless client.errors.present? %>
+  $('form#edit-client-' + <%= client.id %>).remove();
+  console.log('Remove', $('form#edit-client-' + <%= client.id %>));
+  $('#client-' + <%= client.id %>).replaceWith("<%= j render client %>");
+  console.log('ReplaceWith', $('#client-' + <%= client.id %>));
+<% end %>

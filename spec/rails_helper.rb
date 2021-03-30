@@ -36,11 +36,8 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include ControllerHelpers, type: :controller
   config.include FeatureHelpers, type: :feature
-  # config.include ApiHelpers, type: :request
-
-  # Capybara.javascript_driver = :selenium_chrome_headless
-  # Capybara.default_max_wait_time = 5
-
+  Capybara.javascript_driver = :selenium_chrome_headless
+  Capybara.default_max_wait_time = 5
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -72,17 +69,22 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
-end
 
-# !
-FactoryBot::SyntaxRunner.class_eval do
-  include ActionDispatch::TestProcess
-end
+  # Удаление из папки /tmp/storage, после выполнение всех тестов
+  # config.after(:all) do
+  #   FileUtils.rm_rf("#{Rails.root}/tmp/storage")
+  # end
 
-# !
-Shoulda::Matchers.configure do |config|
-  config.integrate do |with|
-    with.test_framework :rspec
-    with.library :rails
+  # !
+  # FactoryBot::SyntaxRunner.class_eval do
+  #   include ActionDispatch::TestProcess
+  # end
+
+  # !
+  Shoulda::Matchers.configure do |config|
+    config.integrate do |with|
+      with.test_framework :rspec
+      with.library :rails
+    end
   end
 end

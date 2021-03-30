@@ -3,20 +3,108 @@
     .row 
       .col-10
         h5.mt-4 = 'Информация о клиенте'
-    .row      
-      .col-11.mt-4
-        p= client.surname
-        p= client.name
-        p= client.patronymic
-        p= client.birthdate
-        p= client.city
-        p= client.address
-        p= client.email
-        p= client.phon
-        p= client.skype
-        p= client.entry_date
-        p= client.lesson_number
-        p= client.communicant_date
 
-br
-p= link_to 'Назад', clients_path, class: 'btn btn-success'
+    .client-errors
+      = render 'shared/errors', resource: client
+
+    .row
+      .col-4
+        = 'Клиент назначен пользователем?'
+      .col-8
+        = User.where(client_id: client.id).exists? ? 'Да' : 'Нет'
+
+    .row
+      .col-4
+        = 'Статус клиента:'
+      .col-8
+        - statuses = Status.find(client.status_clients.pluck(:status_id))
+        - statuses.each do |status|
+          i.fa.fa-user-circle style='font-size: 12px; margin: 0 10px 0 5px; color: blue;'
+          = status.name
+
+    .row
+      .col-4 
+        = 'Страна:'
+      .col-8
+        = Country.find(client.country_id).name
+
+    .row
+      .col-4
+        = 'ФИО:'    
+      .col-8
+        i.fa.fa-user-circle style='font-size: 12px; margin: 0 10px 0 5px; color: blue;'
+        = client.surname
+        = ' '
+        = client.name
+        = ' '
+        = client.patronymic
+
+    .row
+      .col-4
+        = 'Дата рождения:'
+      .col-8
+        = client.birthdate
+
+    .row
+      .col-4
+        = 'Место проживания:'
+      .col-8
+        i.fa.fa-address-card style='font-size: 12px; margin: 0 10px 0 5px; color: blue;'
+        = client.city
+        = ' '
+        = client.address
+
+    .row
+      .col-4
+        = 'Email-Skip-Phon:'
+      .col-8
+        i.fa.fa-envelope style='font-size: 12px; margin: 0 10px 0 5px; color: blue;'      
+        = client.email
+        i.fa.fa-skype style='font-size: 12px; margin: 0 10px 0 5px; color: blue;'
+        = client.skype
+        i.fa.fa-phone-square style='font-size: 12px; margin: 0 10px 0 5px; color: blue;'
+        = client.phon
+
+    .row
+      .col-4
+        = 'Дата вступления:'
+      .col-8
+        = client.entry_date
+
+    .row
+      .col-4
+        = 'Урок:'
+      .col-8
+        = client.lesson_number
+
+    .row
+      .col-4
+        = 'Причастник (дата):'
+      .col-8
+        = client.communicant_date
+
+    .row
+      .col-4
+        = 'Группа. Должность в группе:'
+      .col-8 
+        i.fa.fa-users style='font-size: 12px; margin: 0 10px 0 5px; color: blue;'
+        = Group.find(client.group_id).name
+        i.fa.fa-user style='font-size: 12px; margin: 0 10px 0 5px; color: blue;'
+        = GroupPosition.find(client.group_position_id).name
+    .row
+      .col-4
+        = 'Команда. Должность в команде:'
+      .col-8
+        i.fa.fa-users style='font-size: 12px; margin: 0 10px 0 5px; color: blue;'
+        = TeamProject.find(client.team_project_id).name
+        i.fa.fa-user style='font-size: 12px; margin: 0 10px 0 5px; color: blue;'
+        = TeamPosition.find(client.team_position_id).name
+    .row
+      .col-4 
+        = 'Комментарий:'
+      .col-8
+        i.fa.fa-comment style='font-size: 12px; margin: 0 10px 0 5px; color: blue;'
+        = client.comments
+
+    br
+    p= link_to 'Вернуться к списку', clients_path, class: 'btn btn-success'
