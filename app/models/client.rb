@@ -20,4 +20,26 @@ class Client < ApplicationRecord
   validates :email, presence: true
 
   default_scope { order(surname: :asc) }
+
+  private
+
+  def self.user_exists?(client)
+    User.where(client_id: client).exists?
+  end
+
+  def self.make_user(client)
+    if client.make_user
+      User.create(client_id: client.id, email: client.email, password: '123456', password_confirmation: '123456') if !user_exists?(client)
+    else
+      client.user.destroy if user_exists?(client)      
+    end
+  end
+
+  def self.status_client_append(client)
+    client.status_clients.each{ |s| s.delete } if client.status_clients.present?
+    @ids = client.ids.split(/\s/)
+    @ids.each do |id|
+      status_client = StatusClient.create(client: client, status: Status.find(id))
+    end
+  end
 end
