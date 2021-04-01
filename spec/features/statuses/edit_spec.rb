@@ -9,10 +9,10 @@ feature 'User can edit status', %q{
   given!(:user) { create(:user) }
   given!(:status) { create(:status) }
 
-  # scenario 'Unauthenticated can not edit status' do
-  #   visit statuses_path
-  #   expect(page).to_not have_link 'Edit'
-  # end
+  scenario 'Unauthenticated can not edit status' do
+    visit statuses_path
+    expect(page).to_not have_link 'Edit'
+  end
 
   describe 'Authenticated user', js: true do
     background do

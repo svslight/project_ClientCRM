@@ -23,13 +23,13 @@ feature 'Authorized user can delete country', %q(
     end
   end
   
-  describe 'Unauthorized user' do
-    scenario 'trying to delete country' do
-      visit countries_path
-      within("#country-#{country.id}") do
-        expect(page).to have_content country.name
-        expect(page).to_not have_link 'Delete'
-      end
-    end
-  end
+  # describe 'Unauthorized user' do
+  #   scenario 'trying to delete country' do
+  #     visit countries_path
+  #     within("#country-#{country.id}") do
+  #       expect(page).to have_content country.name
+  #       expect(page).to_not have_link 'Delete'
+  #     end
+  #   end
+  # end
 end
