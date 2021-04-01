@@ -11,6 +11,7 @@ require('jquery')
 require("./clients")
 require("./countries")
 require("./statuses")
+require("./groupstatuses")
 import 'bootstrap'
 import '../stylesheets/application'
 

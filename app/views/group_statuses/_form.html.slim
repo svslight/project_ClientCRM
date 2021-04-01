@@ -1,0 +1,12 @@
+= form_with model: group_status, class: 'hidden', html: { id: "edit-groupstatus-#{group_status.id}", data: { remote: true } } do |f|
+  = render 'shared/errors', resource: group_status
+
+  .row
+    .col-5
+      = f.label :name, 'Статус группы', class: "hidden"
+      = f.text_field :name, class: 'form-control'
+
+    .col-7
+      = f.submit 'Сохранить', class: 'btn btn-sm btn-success mr-2'
+      = link_to 'Отменить', group_statuses_path, class: 'btn btn-sm btn-success'
+      
