@@ -37,7 +37,7 @@ class Client < ApplicationRecord
 
   def self.status_client_append(client)
     client.status_clients.each{ |s| s.delete } if client.status_clients.present?
-    @ids = client.ids.split(/\s/)
+    @ids = client.ids.to_s.split(/\s/)
     @ids.each do |id|
       status_client = StatusClient.create(client: client, status: Status.find(id))
     end
