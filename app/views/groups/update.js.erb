@@ -1,0 +1,6 @@
+$('.group-errors').html("<%= render 'shared/errors', resource: group %>");
+console.log('Update!');
+<% unless group.errors.present? %>
+  $('form#edit-group-' + <%= group.id %>).remove();
+  $('#group-' + <%= group.id %>).replaceWith("<%= j render group %>");
+<% end %>

@@ -12,6 +12,7 @@ require("./clients")
 require("./countries")
 require("./statuses")
 require("./groupstatuses")
+require("./groups")
 import 'bootstrap'
 import '../stylesheets/application'
 

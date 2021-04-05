@@ -4,5 +4,10 @@ class Group < ApplicationRecord
 
   has_many :clients, dependent: :destroy
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true
+  validates :city, presence: true
+  validates :email, presence: true
+  validates :phon, presence: true
+
+  default_scope { order(name: :asc) }
 end

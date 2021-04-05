@@ -1,0 +1,66 @@
+.row.d-flex.justify-content-center
+  .col-1
+  .col-11
+    h5.my-3 Форма ввода данных в справочник группы
+   
+    = form_with model: group, class: 'new-group' do |f|
+      = render 'shared/errors', resource: group
+
+      .row
+        .col-2
+          h7 Страна
+        .col-10
+          = f.label :country_id, 'Страна', class: "hidden"
+          = f.collection_select(:country_id, Country.all, :id, :name, {prompt: "Выбери страну"})
+      .row
+        .col-2 
+          h7 Город
+        .col-10
+          = f.label :city, 'Город', class: "hidden"
+          = f.text_field :city, placeholder: "Город"
+      .row
+        .col-2
+          h7 Название группы
+        .col-10
+          = f.label :name, 'Название группы', class: "hidden"
+          = f.text_field :name, placeholder: "Название группы"
+      .row
+        .col-2
+          h7 Статус группы      
+        .col-10
+          = f.label :group_status_id, 'Статус группы', class: "hidden"
+          = f.collection_select(:group_status_id, GroupStatus.all, :id, :name, {prompt: "Выбери статус группы"})
+      .row
+        .col-2
+          h7 Дата создания
+        .col-10
+          = f.label :entry_date, 'Дата создания', class: "hidden"
+          = f.text_field :entry_date, placeholder: "Дата создания"
+      .row
+        .col-2
+          h7 Почта      
+        .col-10
+          = f.label :email, 'Почта', class: "hidden"
+          = f.text_field :email, placeholder: "Email"
+      .row
+        .col-2
+          h7 Скайп
+        .col-10
+          = f.label :skype, 'Скайп', class: "hidden"
+          = f.text_field :skype, placeholder: "Скайп"
+      .row
+        .col-2
+          h7 Телефон      
+        .col-10
+          = f.label :phon, 'Телефон', class: "hidden"
+          = f.text_field :phon, placeholder: "Телефон"
+      .row
+        .col-2
+          h7 Комментарий      
+        .col-10
+          = f.label :comments, 'Комментарий', class: "hidden"
+          = f.text_area :comments, class: 'form-control', placeholder: "Комментарий"
+   
+      br
+      = f.submit 'Создать', class: 'btn btn-success mr-3'
+      = link_to 'Отменить', groups_path, class: 'btn btn-success'
