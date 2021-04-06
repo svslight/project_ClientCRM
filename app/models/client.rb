@@ -12,6 +12,9 @@ class Client < ApplicationRecord
   has_many :status_clients, dependent: :destroy
   has_many :status, through: :status_clients
 
+  has_many :project_teams, dependent: :destroy
+  has_many :project, through: :project_teams
+
   validates :name, presence: true
   validates :surname, presence: true
   validates :patronymic, presence: true

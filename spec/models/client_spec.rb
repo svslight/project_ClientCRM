@@ -12,6 +12,9 @@ RSpec.describe Client, type: :model do
   it { should have_many(:status_clients).dependent(:destroy) }
   it { should have_many(:status).through(:status_clients) }
 
+  it { should have_many(:project_teams).dependent(:destroy) }
+  it { should have_many(:project).through(:project_teams) }
+
   it { should validate_presence_of :name }
   it { should validate_presence_of :surname }
   it { should validate_presence_of :patronymic }
