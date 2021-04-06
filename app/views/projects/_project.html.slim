@@ -1,0 +1,16 @@
+li.list-group-item id= "project-#{project.id}"
+  .row.d-flex.align-items-center
+    .col-1
+    .col-6
+      table#table.table-hover.table-sm
+        .tr
+          td
+            span id= "name-#{project.id}"
+              = project.name
+            = render partial: 'form', locals: { project: project }
+
+    .col-5
+      nav.nav.justify-content-end.btn-group-sm
+        = link_to 'Show', project, class: 'btn btn-info mr-4'
+        = link_to 'Edit', '#', class: 'edit-project-link btn btn-info mr-4', data: { project_id: project.id }
+        = link_to 'Delete', project, method: :delete, remote: true, class: 'btn btn-info'
