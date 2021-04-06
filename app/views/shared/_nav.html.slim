@@ -8,7 +8,8 @@ nav.navbar.navbar-light style="background-color: #e3f2fd;"
         li= link_to 'Страна', countries_path, style: 'color: #007bff', class: "dropdown-item"
         li= link_to 'Статус клиента', statuses_path, style: 'color: #007bff', class: "dropdown-item"
         li= link_to 'Статус группы', group_statuses_path, style: 'color: #007bff', class: "dropdown-item"
-        li= link_to 'Группы', groups_path, style: 'color: #007bff', class: "dropdown-item"
+        li= link_to 'Группы по городам', groups_path, style: 'color: #007bff', class: "dropdown-item"
+        li= link_to 'Должности в правлении групп', group_positions_path, style: 'color: #007bff', class: "dropdown-item"
         / li.dropdown-divider
         / li= link_to 'Выход из CRM', destroy_user_session_path, method: :delete, style: 'color: #007bff', class: "dropdown-item"
 

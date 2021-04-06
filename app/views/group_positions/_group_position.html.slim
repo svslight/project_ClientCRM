@@ -1,0 +1,16 @@
+li.list-group-item id= "group-position-#{group_position.id}"
+  .row.d-flex.align-items-center
+    .col-1
+    .col-6
+      table#table.table-hover.table-sm
+        .tr
+          td
+            span id= "name-#{group_position.id}"
+              = group_position.name
+            = render partial: 'form', locals: { group_position: group_position }
+
+    .col-5
+      nav.nav.justify-content-end.btn-group-sm
+        = link_to 'Show', group_position, class: 'btn btn-info mr-4'
+        = link_to 'Edit', '#', class: 'edit-groupposition-link btn btn-info mr-4', data: { groupposition_id: group_position.id }
+        = link_to 'Delete', group_position, method: :delete, class: 'btn btn-info'

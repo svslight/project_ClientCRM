@@ -13,6 +13,7 @@ require("./countries")
 require("./statuses")
 require("./groupstatuses")
 require("./groups")
+require("./grouppositions")
 import 'bootstrap'
 import '../stylesheets/application'
 
