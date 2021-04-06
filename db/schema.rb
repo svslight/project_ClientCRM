@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_04_150229) do
+ActiveRecord::Schema.define(version: 2021_04_06_141338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,21 @@ ActiveRecord::Schema.define(version: 2021_04_04_150229) do
     t.index ["group_status_id"], name: "index_groups_on_group_status_id"
   end
 
+  create_table "project_teams", force: :cascade do |t|
+    t.bigint "project_id", null: false
+    t.bigint "client_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["client_id"], name: "index_project_teams_on_client_id"
+    t.index ["project_id"], name: "index_project_teams_on_project_id"
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "status_clients", force: :cascade do |t|
     t.bigint "status_id", null: false
     t.bigint "client_id", null: false
@@ -125,6 +140,8 @@ ActiveRecord::Schema.define(version: 2021_04_04_150229) do
   add_foreign_key "clients", "team_projects"
   add_foreign_key "groups", "countries"
   add_foreign_key "groups", "group_statuses"
+  add_foreign_key "project_teams", "clients"
+  add_foreign_key "project_teams", "projects"
   add_foreign_key "status_clients", "clients"
   add_foreign_key "status_clients", "statuses"
   add_foreign_key "users", "clients"
