@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_06_141338) do
+ActiveRecord::Schema.define(version: 2021_04_07_135341) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,7 +32,6 @@ ActiveRecord::Schema.define(version: 2021_04_06_141338) do
     t.bigint "country_id"
     t.bigint "group_id"
     t.bigint "group_position_id"
-    t.bigint "team_project_id"
     t.bigint "team_position_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -40,7 +39,6 @@ ActiveRecord::Schema.define(version: 2021_04_06_141338) do
     t.index ["group_id"], name: "index_clients_on_group_id"
     t.index ["group_position_id"], name: "index_clients_on_group_position_id"
     t.index ["team_position_id"], name: "index_clients_on_team_position_id"
-    t.index ["team_project_id"], name: "index_clients_on_team_project_id"
   end
 
   create_table "countries", force: :cascade do |t|
@@ -113,12 +111,6 @@ ActiveRecord::Schema.define(version: 2021_04_06_141338) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "team_projects", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -137,7 +129,6 @@ ActiveRecord::Schema.define(version: 2021_04_06_141338) do
   add_foreign_key "clients", "group_positions"
   add_foreign_key "clients", "groups"
   add_foreign_key "clients", "team_positions"
-  add_foreign_key "clients", "team_projects"
   add_foreign_key "groups", "countries"
   add_foreign_key "groups", "group_statuses"
   add_foreign_key "project_teams", "clients"
