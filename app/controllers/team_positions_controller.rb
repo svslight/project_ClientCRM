@@ -16,12 +16,6 @@ class TeamPositionsController < ApplicationController
 
   def update
     team_position.update(team_position_params)
-
-    # if team_position.update(team_position_params)
-    #   redirect_to team_position_path(team_position)
-    # else
-    #   render :edit
-    # end
   end
 
   def destroy
