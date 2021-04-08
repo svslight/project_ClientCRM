@@ -43,6 +43,6 @@ class ClientsController < ApplicationController
                                    :phon, :skype, :entry_date, :lesson_number, :email,
                                    :communicant_date, :comments, :country_id,
                                    :group_id, :group_position_id, :team_position_id,
-                                   :make_user, :ids, :p_ids)
+                                   :make_user, :ids, :pids)
   end
 end

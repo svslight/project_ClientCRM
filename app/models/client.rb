@@ -1,5 +1,5 @@
 class Client < ApplicationRecord
-  attr_accessor :make_user, :ids, :p_ids
+  attr_accessor :make_user, :ids, :pids
 
   belongs_to :country, optional: true
   belongs_to :group, optional: true
@@ -46,10 +46,10 @@ class Client < ApplicationRecord
   end
 
   def self.project_team_append(client)
-    client.project_teams.each{ |p| p.delete } if client.project_teams.present?
-    @p_ids = client.p_ids.to_s.split(/\s/)
-    @p_ids.each do |id|
-      project_team = ProjectTeam.create(client: client, project: Project.find(id))
+    client.project_teams.each{ |s| s.delete } if client.project_teams.present?
+    @pids = client.pids.to_s.split(/\s/)
+    @pids.each do |pid|
+      project_team = ProjectTeam.create(client: client, project: Project.find(pid))
     end
   end
 end
