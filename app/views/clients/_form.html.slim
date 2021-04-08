@@ -95,12 +95,13 @@
         .col-8
           = f.collection_select(:group_position_id, GroupPosition.all, :id, :name, {prompt: "Выберите должность в группе"})
 
-      .row
-        .col-2
-        .col-2
-          = f.label :team_project_id, 'Командный проект'
-        .col-8
-          = f.collection_select(:team_project_id, TeamProject.all, :id, :name, {prompt: "Выберите командный проект"})
+      / .row
+      /   .col-2
+      /   .col-2
+      /     = f.label :team_project_id, 'Командный проект'
+      /   .col-8
+      /     = f.collection_select(:team_project_id, TeamProject.all, :id, :name, {prompt: "Выберите командный проект"})
+
       .row
         .col-2      
         .col-2

@@ -9,6 +9,7 @@ class ClientsController < ApplicationController
   def create
     if client.save
       Client.status_client_append(client)
+      Client.project_team_append(client)
       Client.make_user(client)
       
       redirect_to client_path(client), notice: 'Client was successfully created'
@@ -20,6 +21,7 @@ class ClientsController < ApplicationController
   def update
     client.update(client_params)
     Client.status_client_append(client)
+    Client.project_team_append(client)
     Client.make_user(client)    
 
     redirect_to clients_path
@@ -39,8 +41,8 @@ class ClientsController < ApplicationController
   def client_params
     params.require(:client).permit(:name, :surname, :patronymic, :birthdate, :city, :address,
                                    :phon, :skype, :entry_date, :lesson_number, :email,
-                                   :communicant_date, :comments, :country_id, :client_status_id,
-                                   :group_id, :group_position_id, :team_project_id, :team_position_id,
-                                   :make_user, :ids)
+                                   :communicant_date, :comments, :country_id,
+                                   :group_id, :group_position_id, :team_position_id,
+                                   :make_user, :ids, :p_ids)
   end
 end
