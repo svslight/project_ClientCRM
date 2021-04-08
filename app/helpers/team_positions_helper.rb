@@ -1,0 +1,2 @@
+module TeamPositionsHelper
+end
