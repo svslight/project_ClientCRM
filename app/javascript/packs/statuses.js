@@ -19,7 +19,7 @@ $(document).on('turbolinks:load', function(){
     console.log('Changed!');
     clientId = $(this).next().data('client');
     $('.statuses').append($('.status-form option[value=' + $(this).val() + ']:selected').text() + ' ');
-    $('.statuses').append('<i class="fa fa-times cross" style="font-size: 12px; margin: 0 10px 0 5px; color: red;" data-client=' + clientId + 'data-id=' + $(this).val() + '>')
+    $('.statuses').append('<i class="fa fa-times cross" style="font-size: 12px; margin: 0 10px 0 5px; color: red;" data-client="' + clientId + '" data-id="' + $(this).val() + '">')
     const inp = $('input[data-client=' + clientId + ']');
     inp.val($(this).val() + ' ' + inp.val());
   });

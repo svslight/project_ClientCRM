@@ -27,7 +27,7 @@
           = f.collection_select(:project_id, Project.all, :id, :name, {prompt: "Выбери командный проект"}, { id: 'project-new'})
           #projects
         .col-7
-          = f.text_field :p_ids, id: 'p_ids'
+          = f.text_field :pids, id: 'pids'
 
       .row
         .col-2
