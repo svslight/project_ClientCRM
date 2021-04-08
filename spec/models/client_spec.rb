@@ -4,7 +4,6 @@ RSpec.describe Client, type: :model do
   it { should belong_to(:country).optional }
   it { should belong_to(:group).optional }
   it { should belong_to(:group_position).optional }
-  it { should belong_to(:team_project).optional }
   it { should belong_to(:team_position).optional }
 
   it { should have_one(:user).dependent(:destroy) }

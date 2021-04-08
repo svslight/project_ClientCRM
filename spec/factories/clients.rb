@@ -18,7 +18,6 @@ FactoryBot.define do
     group_id { 1 }
     group_position_id { 1 }
     team_position_id { 1 }
-    team_project_id { 1 }
 
     trait :invalid do
       name { nil }
@@ -31,7 +30,6 @@ FactoryBot.define do
       group_id { nil }
       group_position_id { nil }
       team_position_id { nil }
-      team_project_id { nil }
     end
   end
 end
