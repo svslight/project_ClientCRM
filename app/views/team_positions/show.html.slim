@@ -1,0 +1,11 @@
+.row.d-flex.justify-content-center
+  .col-10
+    .row 
+      .col-10
+        h5.mt-4 = 'Должность в командном проекте'
+    .row      
+      .col-11.mt-4
+        p= team_position.name
+
+    br
+    p= link_to 'Вернуться к списку', team_positions_path, class: 'btn btn-success'

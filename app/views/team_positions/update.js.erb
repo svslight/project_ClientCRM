@@ -1,0 +1,6 @@
+$('.team-position-errors').html("<%= render 'shared/errors', resource: team_position %>");
+console.log('Update!');
+<% unless team_position.errors.present? %>
+  $('form#edit-teamposition-' + <%= team_position.id %>).remove();
+  $('#team-position-' + <%= team_position.id %>).replaceWith("<%= j render team_position %>");
+<% end %>
