@@ -1,0 +1,38 @@
+.row.d-flex.justify-content-center
+  .col-10
+    .row 
+      .col-10
+        h5.mt-4= 'Просмотр данных группы'
+    .row      
+      .col-12.mt-4
+        p= Country.find(group.country_id).name
+        p= group.city
+        p= group.name        
+    .row
+      .col-2
+        h7 Статус группы:
+      .col-10
+        p= GroupStatus.find(group.group_status_id).name
+    .row
+      .col-2
+        h7 Дата создания:
+      .col-10
+        p= group.entry_date
+    .row
+      .col-2
+        h7 Эл.почта:
+      .col-10
+        p= group.email
+    .row
+      .col-2
+        h7 Скайп:
+      .col-10        
+        p= group.skype
+    .row
+      .col-2
+        h7 Телефон:
+      .col-10         
+        p= group.phon
+
+    br
+    p= link_to 'Вернуться к списку', groups_path, class: 'btn btn-success'

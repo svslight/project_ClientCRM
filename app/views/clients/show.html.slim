@@ -4,9 +4,6 @@
       .col-10
         h5.mt-4 = 'Информация о клиенте'
 
-    .client-errors
-      = render 'shared/errors', resource: client
-
     .row
       .col-4
         = 'Клиент назначен пользователем?'
@@ -19,8 +16,7 @@
       .col-8
         - statuses = Status.find(client.status_clients.pluck(:status_id))
         - statuses.each do |status|
-          i.fa.fa-user-circle style='font-size: 12px; margin: 0 10px 0 5px; color: blue;'
-          = status.name
+          p= status.name
 
     .row
       .col-4 
@@ -32,7 +28,6 @@
       .col-4
         = 'ФИО:'    
       .col-8
-        i.fa.fa-user-circle style='font-size: 12px; margin: 0 10px 0 5px; color: blue;'
         = client.surname
         = ' '
         = client.name
@@ -49,20 +44,26 @@
       .col-4
         = 'Место проживания:'
       .col-8
-        i.fa.fa-address-card style='font-size: 12px; margin: 0 10px 0 5px; color: blue;'
         = client.city
         = ' '
         = client.address
 
     .row
       .col-4
-        = 'Email-Skip-Phon:'
-      .col-8
-        i.fa.fa-envelope style='font-size: 12px; margin: 0 10px 0 5px; color: blue;'      
+        = 'Эл.почта:'
+      .col-8     
         = client.email
-        i.fa.fa-skype style='font-size: 12px; margin: 0 10px 0 5px; color: blue;'
+
+    .row
+      .col-4
+        = 'Скайп:'
+      .col-8     
         = client.skype
-        i.fa.fa-phone-square style='font-size: 12px; margin: 0 10px 0 5px; color: blue;'
+
+    .row
+      .col-4
+        = 'Телефон:'
+      .col-8     
         = client.phon
 
     .row
@@ -85,25 +86,34 @@
 
     .row
       .col-4
-        = 'Группа. Должность в группе:'
+        = 'Группа:'
       .col-8 
-        i.fa.fa-users style='font-size: 12px; margin: 0 10px 0 5px; color: blue;'
         = Group.find(client.group_id).name
-        i.fa.fa-user style='font-size: 12px; margin: 0 10px 0 5px; color: blue;'
-        = GroupPosition.find(client.group_position_id).name
+
     .row
       .col-4
-        = 'Команда. Должность в команде:'
+        = 'Должность в группе:'
+      .col-8 
+        = GroupPosition.find(client.group_position_id).name
+
+    .row
+      .col-4
+        = 'Командный проект:'
       .col-8
-        i.fa.fa-users style='font-size: 12px; margin: 0 10px 0 5px; color: blue;'
-        = TeamProject.find(client.team_project_id).name
-        i.fa.fa-user style='font-size: 12px; margin: 0 10px 0 5px; color: blue;'
+        - projects = Project.find(client.project_teams.pluck(:project_id))
+        - projects.each do |project|
+          p= project.name
+
+    .row
+      .col-4
+        = 'Должность в команде:'
+      .col-8
         = TeamPosition.find(client.team_position_id).name
+
     .row
       .col-4 
         = 'Комментарий:'
       .col-8
-        i.fa.fa-comment style='font-size: 12px; margin: 0 10px 0 5px; color: blue;'
         = client.comments
 
     br

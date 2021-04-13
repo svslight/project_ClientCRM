@@ -1,0 +1,14 @@
+.row.d-flex.justify-content-center
+  .col-10
+    h5.my-3 Форма ввода должности в командном проекте
+   
+    = form_with model: team_position, class: 'new-team_position' do |f|
+      = render 'shared/errors', resource: team_position
+
+      .row
+        .col-6
+          = f.label :name, 'Должность', class: 'mr-3 mt-2'
+          = f.text_field :name
+        .col-6
+          = f.submit 'Создать', class: 'btn btn-success mr-3'
+          = link_to 'Отменить', team_positions_path, class: 'btn btn-success'

@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :team_project do
+  factory :project do
     name { "MyString" }
   end
 end

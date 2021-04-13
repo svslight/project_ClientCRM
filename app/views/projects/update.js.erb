@@ -1,0 +1,6 @@
+$('.project-errors').html("<%= render 'shared/errors', resource: project %>");
+console.log('Update');
+<% unless project.errors.present? %>
+  $('form#edit-project-' + <%= project.id %>).remove();
+  $('#project-' + <%= project.id %>).replaceWith("<%= j render project %>");
+<% end %>

@@ -1,0 +1,12 @@
+= form_with model: group_position, class: 'hidden', html: { id: "edit-groupposition-#{group_position.id}", data: { remote: true } } do |f|
+  = render 'shared/errors', resource: group_position
+
+  .row
+    .col-5
+      = f.label :name, 'Должность', class: "hidden"
+      = f.text_field :name, class: 'form-control'
+
+    .col-7
+      = f.submit 'Сохранить', class: 'btn btn-sm btn-success mr-2'
+      = link_to 'Отменить', group_positions_path, class: 'btn btn-sm btn-success'
+  

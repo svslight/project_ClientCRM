@@ -1,0 +1,11 @@
+.row.d-flex.justify-content-center
+  .col-10
+    .row 
+      .col-10
+        h5.mt-4 = 'Должность в правлении группы'
+    .row      
+      .col-11.mt-4
+        p= group_position.name
+
+    br
+    p= link_to 'Вернуться к списку', group_positions_path, class: 'btn btn-success'

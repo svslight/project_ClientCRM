@@ -1,0 +1,15 @@
+.bg-light.border-bottom
+  .row.d-flex.align-items-center.py-3
+    .col-1
+    .col-6
+      h5= 'Командные проекты'
+    .col-4
+      nav.nav.justify-content-end
+        p= link_to 'Добавить командный проект', new_project_path, class: 'btn btn-success btn-sm'
+    .col-1
+
+ul.list-group.list-group-flush
+  .project-errors
+    = render 'shared/errors', resource: project
+  .projects
+    = render projects

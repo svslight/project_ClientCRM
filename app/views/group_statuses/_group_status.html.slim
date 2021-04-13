@@ -1,0 +1,16 @@
+li.list-group-item id= "group-status-#{group_status.id}"
+  .row.d-flex.align-items-center
+    .col-1
+    .col-6
+      table#table.table-hover.table-sm
+        .tr
+          td
+            span id= "name-#{group_status.id}"
+              = group_status.name
+            = render partial: 'form', locals: { group_status: group_status }
+
+    .col-5
+      nav.nav.justify-content-end.btn-group-sm
+        = link_to 'Show', group_status, class: 'btn btn-info mr-4'
+        = link_to 'Edit', '#', class: 'edit-groupstatus-link btn btn-info mr-4', data: { groupstatus_id: group_status.id }
+        = link_to 'Delete', group_status, method: :delete, class: 'btn btn-info'

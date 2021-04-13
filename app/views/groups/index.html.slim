@@ -1,0 +1,16 @@
+.bg-light.border-bottom
+  .row.d-flex.align-items-center.py-3
+    .col-1
+    .col-6
+      h5= 'Список групп организации'
+    .col-4
+      nav.nav.justify-content-end
+        p= link_to 'Добавить группу', new_group_path, class: 'btn btn-success btn-sm'
+    .col-1
+
+ul.list-group.list-group-flush
+  .group-errors
+    / = render 'shared/errors', resource: group
+  .groups
+    = render groups
+    

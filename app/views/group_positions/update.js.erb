@@ -1,0 +1,6 @@
+$('.group-position-errors').html("<%= render 'shared/errors', resource: group_position %>");
+
+<% unless group_position.errors.present? %>
+  $('form#edit-groupposition-' + <%= group_position.id %>).remove();
+  $('#group-position-' + <%= group_position.id %>).replaceWith("<%= j render group_position %>");
+<% end %>

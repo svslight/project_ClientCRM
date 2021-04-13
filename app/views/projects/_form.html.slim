@@ -1,0 +1,11 @@
+= form_with model: project, class: 'hidden', html: { id: "edit-project-#{project.id}", data: { remote: true } } do |f|
+  = render 'shared/errors', resource: project
+
+  .row
+    .col-5
+      = f.label :name, 'Командный проект', class: "hidden"
+      = f.text_field :name, class: 'form-control'
+
+    .col-7.btn-group-sm.mt-1
+      = f.submit 'Сохранить', class: 'btn btn-success mr-2'
+      = link_to 'Отменить', projects_path, class: 'btn btn-success'

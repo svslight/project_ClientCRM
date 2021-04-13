@@ -1,0 +1,15 @@
+.bg-light.border-bottom
+  .row.d-flex.align-items-center.py-3
+    .col-1
+    .col-6
+      h5= 'Список должностей в правлении групп'
+    .col-4
+      nav.nav.justify-content-end
+        p= link_to 'Добавить должность', new_group_position_path, class: 'btn btn-success btn-sm'
+    .col-1
+
+ul.list-group.list-group-flush
+  .group-position-errors
+    / = render 'shared/errors', resource: group-status
+  .group-positions
+    = render group_positions

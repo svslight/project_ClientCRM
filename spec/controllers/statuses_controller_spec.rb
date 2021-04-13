@@ -73,11 +73,11 @@ RSpec.describe StatusesController, type: :controller do
     let!(:status) { create(:status) }
 
     it 'deletes the status' do
-      expect { delete :status, params: { id: status }, format: :js }.to change(Status, :count).by(-1)
+      expect { delete :destroy, params: { id: status }, format: :js }.to change(Status, :count).by(-1)
     end
 
     it 'render template to index' do
-      delete :status, params: { id: status }, format: :js
+      delete :destroy, params: { id: status }, format: :js
       expect(response).to render_template :destroy
       # expect(response).to redirect_to statuses_path
     end

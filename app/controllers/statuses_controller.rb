@@ -20,7 +20,6 @@ class StatusesController < ApplicationController
 
   def destroy
     status.destroy
-    redirect_to statuses_path, notice: 'Status was successfully deleted'
   end
 
   private

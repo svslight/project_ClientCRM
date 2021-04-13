@@ -1,0 +1,14 @@
+.row.d-flex.justify-content-center
+  .col-10
+    h5.my-3 Форма для ввода Статуса группы
+   
+    = form_with model: group_status, class: 'new-group-status' do |f|
+      = render 'shared/errors', resource: group_status
+
+      .row
+        .col-6
+          = f.label :name, 'Статус группы', class: 'mr-3 mt-2'
+          = f.text_field :name
+        .col-6
+          = f.submit 'Создать', class: 'btn btn-success mr-3'
+          = link_to 'Отменить', group_statuses_path, class: 'btn btn-success'

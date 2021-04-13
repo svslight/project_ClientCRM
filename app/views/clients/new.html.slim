@@ -22,6 +22,15 @@
 
       .row
         .col-2
+          = f.label :project_id, 'Командный проект'
+        .col-3
+          = f.collection_select(:project_id, Project.all, :id, :name, {prompt: "Выбери командный проект"}, { id: 'project-new'})
+          #projects
+        .col-7
+          = f.text_field :pids, id: 'pids'
+
+      .row
+        .col-2
           = f.label :country_id, 'Страна'
         .col-10
           = f.collection_select(:country_id, Country.all, :id, :name, {prompt: "Выбери страну"})
@@ -31,11 +40,11 @@
           h7 ФИО
         .col-10
           = f.label :surname, 'Фамилия', class: "hidden"
-          = f.text_field :surname
+          = f.text_field :surname, placeholder: "Фамилия"
           = f.label :name, 'Имя', class: "hidden"
-          = f.text_field :name
+          = f.text_field :name, placeholder: "Имя"
           = f.label :patronymic, 'Отчество', class: "hidden"
-          = f.text_field :patronymic
+          = f.text_field :patronymic, placeholder: "Отчество"
 
       .row
         .col-2
@@ -48,20 +57,23 @@
           h7 Место проживания
         .col-10
           = f.label :city, 'Город', class: "hidden"
-          = f.text_field :city
+          = f.text_field :city, placeholder: "Город"
+
           = f.label :address, 'Адрес', class: "hidden"
-          = f.text_field :address
+          = f.text_field :address, placeholder: "Адрес"
 
       .row
         .col-2
           h7 Email-Skip-Phon      
         .col-10
           = f.label :email, 'Почта', class: "hidden"
-          = f.text_field :email
+          = f.text_field :email, placeholder: "Email"
+
           = f.label :skype, 'Скайп', class: "hidden"
-          = f.text_field :skype
+          = f.text_field :skype, placeholder: "Скайп"
+
           = f.label :phon, 'Телефон', class: "hidden"
-          = f.text_field :phon
+          = f.text_field :phon, placeholder: "Телефон"
 
       .row
         .col-2
@@ -74,17 +86,13 @@
           = f.label :group_id, 'Группа'
         .col-10
           = f.collection_select(:group_id, Group.all, :id, :name, {prompt: "Выбери группу"})
+
       .row
         .col-2
           = f.label :group_position_id, 'Должность'
         .col-10
           = f.collection_select(:group_position_id, GroupPosition.all, :id, :name, {prompt: "Выбери должность в группе"})
 
-      .row
-        .col-2
-          = f.label :team_project_id, 'Командный проект'
-        .col-10
-          = f.collection_select(:team_project_id, TeamProject.all, :id, :name, {prompt: "Выбери командный проект"})
       .row
         .col-2      
           = f.label :team_position_id, 'Должность'

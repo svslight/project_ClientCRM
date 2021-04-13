@@ -1,4 +1,3 @@
-
 = form_with model: client, class: 'hidden', html: { id: "edit-client-#{client.id}", data: { remote: true } } do |f|
   = render 'shared/errors', resource: client
 
@@ -26,6 +25,19 @@
           - statuses.each do |status|
             span= status.name
             i.fa.fa-times.cross style='font-size: 12px; margin: 0 10px 0 5px; color: red;' data-client=client.id data-id=status.id
+
+      .row
+        .col-2
+        .col-2
+          - projects = Project.find(client.project_teams.pluck(:project_id))
+          = f.label :project_id, 'Изменить командный проект'
+        .col-3
+          = f.collection_select(:project_id, Project.all, :id, :name, {prompt: "Выбери командный проект"}, { class: 'project-form'})
+          = f.text_field :pids, type: 'hidden', data: {pclient: client.id}, value: projects.pluck(:id).join(' ')
+        .col-5.projects            
+          - projects.each do |project|
+            span= project.name
+            i.fa.fa-times.cross style='font-size: 12px; margin: 0 10px 0 5px; color: red;' data-pclient=client.id data-id=project.id
 
       .row
         .col-2
@@ -95,12 +107,13 @@
         .col-8
           = f.collection_select(:group_position_id, GroupPosition.all, :id, :name, {prompt: "Выберите должность в группе"})
 
-      .row
-        .col-2
-        .col-2
-          = f.label :team_project_id, 'Командный проект'
-        .col-8
-          = f.collection_select(:team_project_id, TeamProject.all, :id, :name, {prompt: "Выберите командный проект"})
+      / .row
+      /   .col-2
+      /   .col-2
+      /     = f.label :team_project_id, 'Командный проект'
+      /   .col-8
+      /     = f.collection_select(:team_project_id, TeamProject.all, :id, :name, {prompt: "Выберите командный проект"})
+
       .row
         .col-2      
         .col-2
