@@ -12,5 +12,7 @@ li.list-group-item id= "group-status-#{group_status.id}"
     .col-5
       nav.nav.justify-content-end.btn-group-sm
         = link_to 'Show', group_status, class: 'btn btn-info mr-4'
-        = link_to 'Edit', '#', class: 'edit-groupstatus-link btn btn-info mr-4', data: { groupstatus_id: group_status.id }
-        = link_to 'Delete', group_status, method: :delete, class: 'btn btn-info'
+        - if can?(:update, group_status)
+          = link_to 'Edit', '#', class: 'edit-groupstatus-link btn btn-info mr-4', data: { groupstatus_id: group_status.id }
+        - if can?(:destroy, group_status)
+          = link_to 'Delete', group_status, method: :delete, class: 'btn btn-info'

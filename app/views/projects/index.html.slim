@@ -5,7 +5,8 @@
       h5= 'Командные проекты'
     .col-4
       nav.nav.justify-content-end
-        p= link_to 'Добавить командный проект', new_project_path, class: 'btn btn-success btn-sm'
+        - if can?(:create, project)
+          p= link_to 'Добавить командный проект', new_project_path, class: 'btn btn-success btn-sm'
     .col-1
 
 ul.list-group.list-group-flush

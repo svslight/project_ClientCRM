@@ -6,6 +6,8 @@ class StatusesController < ApplicationController
   expose :statuses, ->{ Status.all }
   expose :status
 
+  authorize_resource
+
   def create
     if status.save
       redirect_to status_path(status), notice: 'Status successfully created'

@@ -6,6 +6,8 @@ class GroupPositionsController < ApplicationController
   expose :group_positions, ->{ GroupPosition.all }
   expose :group_position
 
+  authorize_resource
+  
   def create
     if group_position.save
       redirect_to group_position_path(group_position), notice: 'Group Position successfully created'

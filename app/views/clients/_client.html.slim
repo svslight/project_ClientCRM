@@ -11,8 +11,10 @@ li.list-group-item id = "client-#{client.id}"
     .col-5
       nav.nav.justify-content-end
         = link_to 'Show', client, class: 'btn btn-info mr-4'
-        = link_to 'Edit', '#', class: 'edit-client-link btn btn-info mr-4', data: { client_id: client.id }
-        = link_to 'Delete', client, method: :delete, class: 'btn btn-info'
+        - if can?(:update, client)
+          = link_to 'Edit', '#', class: 'edit-client-link btn btn-info mr-4', data: { client_id: client.id }
+        - if can?(:destroy, client)
+          = link_to 'Delete', client, method: :delete, class: 'btn btn-info'
 
   = render partial: 'form', locals: { client: client }
       

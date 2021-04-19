@@ -5,6 +5,8 @@ class GroupsController < ApplicationController
 
   expose :groups, ->{ Group.all }
   expose :group
+  
+  authorize_resource
 
   def create
     if group.save

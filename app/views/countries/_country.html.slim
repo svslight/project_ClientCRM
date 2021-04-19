@@ -11,6 +11,8 @@ li.list-group-item id= "country-#{country.id}"
 
     .col-5
       nav.nav.justify-content-end.btn-group-sm
-        = link_to 'Show', country, class: 'btn btn-info mr-4'        
-        = link_to 'Edit', '#', class: 'edit-country-link btn btn-info mr-4', data: { country_id: country.id }
-        = link_to 'Delete', country, method: :delete, remote: true, class: 'btn btn-info'
+        = link_to 'Show', country, class: 'btn btn-info mr-4'
+        - if can?(:update, country)
+          = link_to 'Edit', '#', class: 'edit-country-link btn btn-info mr-4', data: { country_id: country.id }
+        - if can?(:destroy, country)  
+          = link_to 'Delete', country, method: :delete, remote: true, class: 'btn btn-info'

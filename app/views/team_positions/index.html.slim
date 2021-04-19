@@ -5,7 +5,8 @@
       h5= 'Список должностей в командном проекте'
     .col-4
       nav.nav.justify-content-end
-        p= link_to 'Добавить должность', new_team_position_path, class: 'btn btn-success btn-sm'
+        - if can?(:create, team_position)
+          p= link_to 'Добавить должность', new_team_position_path, class: 'btn btn-success btn-sm'
     .col-1
 
 ul.list-group.list-group-flush

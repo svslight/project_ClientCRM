@@ -6,6 +6,8 @@ class CountriesController < ApplicationController
   expose :countries, ->{ Country.all }
   expose :country
 
+  authorize_resource
+
   def create
     if country.save
       redirect_to country_path(country), notice: 'Country successfully created'

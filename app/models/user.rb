@@ -6,7 +6,6 @@ class User < ApplicationRecord
 
   belongs_to :client, optional: true
 
-  # def author?(resource)
-  #   self.client_id == resource.id
-  # end
+  validates :email, :uniqueness => true
+
 end

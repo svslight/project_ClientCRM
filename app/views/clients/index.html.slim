@@ -5,7 +5,8 @@
       h4= 'Список членов организации'
     .col-4
       nav.nav.justify-content-end
-        p= link_to 'Добавить клиента', new_client_path, class: 'btn btn-success'
+        - if can?(:create, client)
+          p= link_to 'Добавить клиента', new_client_path, class: 'btn btn-success'
 
 ul.list-group.list-group-flush
   .client-errors

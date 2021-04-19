@@ -1,10 +1,12 @@
 class ClientsController < ApplicationController
 
   before_action :authenticate_user!, except: %i[index show]
-  before_action :load_client, only: [:update, :destroy]
+  before_action :load_client, only: [:show, :edit, :update, :destroy]
 
   expose :clients, ->{ Client.all }
   expose :client
+
+  authorize_resource
 
   def create
     if client.save
@@ -28,6 +30,8 @@ class ClientsController < ApplicationController
   end
 
   def destroy
+    # authorize! :destroy, @client
+
     client.destroy
     redirect_to clients_path, notice: 'Client was successfully deleted.'
   end

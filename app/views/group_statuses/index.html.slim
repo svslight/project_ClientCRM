@@ -5,7 +5,8 @@
       h5= 'Справочник статус группы'
     .col-4
       nav.nav.justify-content-end
-        p= link_to 'Добавить статус группы', new_group_status_path, class: 'btn btn-success btn-sm'
+        - if can?(:create, group_status)
+          p= link_to 'Добавить статус группы', new_group_status_path, class: 'btn btn-success btn-sm'
     .col-1
 
 ul.list-group.list-group-flush

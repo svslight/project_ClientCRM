@@ -5,7 +5,8 @@
       h5= 'Список групп организации'
     .col-4
       nav.nav.justify-content-end
-        p= link_to 'Добавить группу', new_group_path, class: 'btn btn-success btn-sm'
+        - if can?(:create, group)
+          p= link_to 'Добавить группу', new_group_path, class: 'btn btn-success btn-sm'
     .col-1
 
 ul.list-group.list-group-flush

@@ -6,6 +6,8 @@ class ProjectsController < ApplicationController
   expose :projects, ->{ Project.all }
   expose :project
 
+  authorize_resource
+  
   def create
     if project.save
       redirect_to project_path(project), notice: 'Project successfully created'
