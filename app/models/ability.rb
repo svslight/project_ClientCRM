@@ -6,7 +6,7 @@ class Ability
   attr_reader :user
 
   def initialize(user)
-
+    
     if user
       !user.admin? ? user_abilities : admin_abilities
     else
@@ -15,7 +15,7 @@ class Ability
   end
 
   def guest_abilities
-    can :read, :all
+    user ||= User.new
   end
 
   def admin_abilities
@@ -23,7 +23,7 @@ class Ability
   end
   
   def user_abilities
-    guest_abilities
+    can :read, :all
     can %i[create update], [Client, Status, Group, GroupStatus, GroupPosition, Project, TeamPosition]
   end
 end

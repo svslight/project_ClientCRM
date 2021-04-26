@@ -8,4 +8,5 @@ class User < ApplicationRecord
 
   validates :email, :uniqueness => true
 
+  default_scope { order(admin: :desc) }
 end

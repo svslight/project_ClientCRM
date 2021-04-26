@@ -1,19 +1,30 @@
 nav.navbar.navbar-light style="background-color: #e3f2fd;"
   .container
-    = link_to 'Клиентская CRM', root_path, class: 'navbar-brand mr-4', style: 'color: #007bff'
+    = link_to 'Клиенты', root_path, class: 'navbar-brand mr-4', style: 'color: #007bff'
+
+    = link_to 'Пользователи', users_path, class: 'btn btn-outline-primary mr-3'
 
     div.btn-group
-      button.btn.btn-outline-primary.dropdown-toggle type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" Справочники
+      button.btn.btn-outline-primary.dropdown-toggle.mr-3 type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" Справочники
       ul.dropdown-menu
-        li= link_to 'Страна', countries_path, style: 'color: #007bff', class: "dropdown-item"
+        li= link_to 'Страны', countries_path, style: 'color: #007bff', class: "dropdown-item"
         li= link_to 'Статус клиента', statuses_path, style: 'color: #007bff', class: "dropdown-item"
-        li= link_to 'Статус группы', group_statuses_path, style: 'color: #007bff', class: "dropdown-item"
+        li.dropdown-divider
         li= link_to 'Группы по городам', groups_path, style: 'color: #007bff', class: "dropdown-item"
+        li= link_to 'Статус групп', group_statuses_path, style: 'color: #007bff', class: "dropdown-item"
         li= link_to 'Должности в правлении групп', group_positions_path, style: 'color: #007bff', class: "dropdown-item"
+        li.dropdown-divider
         li= link_to 'Командные проекты', projects_path, style: 'color: #007bff', class: "dropdown-item"
         li= link_to 'Должности в командном проекте', team_positions_path, style: 'color: #007bff', class: "dropdown-item"
-        / li.dropdown-divider
-        / li= link_to 'Выход из CRM', destroy_user_session_path, method: :delete, style: 'color: #007bff', class: "dropdown-item"
+
+    div.navbar-text
+      - if user_signed_in?
+        - if current_user.client_id.present?
+          - client = Client.find(current_user.client_id)
+          = client.name
+          span style='margin-left: 7px;' = client.surname
+        - else
+          span style='margin-left: 100px;' = 'Администратор'      
 
     div.ml-auto
       - if user_signed_in?        
