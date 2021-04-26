@@ -1,5 +1,4 @@
 require 'rails_helper'
-# require 'cancan/matchers'
 
 describe Ability, type: :model do
   subject(:ability) { Ability.new(user) }
@@ -7,7 +6,7 @@ describe Ability, type: :model do
   describe 'for guest' do
     let(:user) { nil }
 
-    it { should be_able_to :read, Client }    
+    it { should_not be_able_to :read, Client }
     it { should_not be_able_to :manage, :all }
   end
 
