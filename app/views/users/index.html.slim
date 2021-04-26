@@ -1,1 +1,11 @@
-h1 index.html.slim
+.bg-light.border-bottom
+  .row.d-flex.align-items-center.py-3
+    .col-1
+    .col-11
+      h5= 'Пользователи'
+
+ul.list-group.list-group-flush
+  .user-errors
+    / = render 'shared/errors', resource: user
+  .users
+    = render users

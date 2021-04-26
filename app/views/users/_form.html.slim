@@ -1,0 +1,33 @@
+= form_with model: user, class: 'hidden', html: { id: "edit-user-#{user.id}", data: { remote: true } } do |f|
+  = render 'shared/errors', resource: user
+
+  .row.d-flex.align-items-center
+    .col-12
+      .row
+        .col-2
+        .col-10
+          h5.my-3 Форма редактирования пользователя
+
+      .row
+        .col-2
+        .col-2
+          = 'Статус:'
+        .col-8
+          - user.admin = User.find(user.id).admin
+          = f.check_box :admin
+          = user.admin? ? 'Администратор' : 'Сотрудник'
+
+      .row
+        .col-2 
+        .col-2
+          = f.label :email, 'Эл.почта'
+        .col-8
+          = f.text_field :email      
+
+      .row
+        .col-2
+        .col-10
+          br
+          = f.submit 'Сохранить', class: 'btn btn-sm btn-success mr-3'
+          = link_to 'Отменить', users_path, class: 'btn btn-sm btn-success'
+  

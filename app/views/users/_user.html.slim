@@ -1,0 +1,19 @@
+li.list-group-item id= "user-#{user.id}"
+  .row.d-flex.align-items-center
+    .col-1
+    .col-6
+      table#table.table-hover.table-sm
+        .tr
+          td= user.admin? ? 'Администратор' : 'Сотрудник'
+          td= user.email
+          / td= Client.find(client.id).name
+
+    .col-5
+      nav.nav.justify-content-end.btn-group-sm
+        = link_to 'Show', user, class: 'btn btn-info mr-4'
+        - if can?(:update, user)
+          = link_to 'Edit', '#', class: 'edit-user-link btn btn-info mr-4', data: { user_id: user.id }
+        - if can?(:destroy, user)
+          = link_to 'Delete', user, method: :delete, class: 'btn btn-info'
+
+  = render partial: 'form', locals: { user: user }

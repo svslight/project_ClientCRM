@@ -16,6 +16,7 @@ require("./groups")
 require("./grouppositions")
 require("./projects")
 require("./teampositions")
+require("./users")
 import 'bootstrap'
 import '../stylesheets/application'
 
