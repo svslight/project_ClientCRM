@@ -6,6 +6,9 @@ class User < ApplicationRecord
 
   belongs_to :client, optional: true
 
+  has_many :role_users, dependent: :destroy
+  has_many :roles, through: :role_users
+
   validates :email, :uniqueness => true
 
   default_scope { order(admin: :desc) }
