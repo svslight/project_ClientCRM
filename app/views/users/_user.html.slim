@@ -4,9 +4,11 @@ li.list-group-item id= "user-#{user.id}"
     .col-6
       table#table.table-hover.table-sm
         .tr
-          td= user.admin? ? 'Администратор' : 'Сотрудник'
-          td= user.email
-          / td= Client.find(client.id).name
+          td= user.admin? ? 'Администратор:' : 'Сотрудник:'
+          td
+            - if user.client_id.present?
+              = Client.find(user.client_id).surname
+              span style='margin-left: 7px;' = Client.find(user.client_id).name          
 
     .col-5
       nav.nav.justify-content-end.btn-group-sm

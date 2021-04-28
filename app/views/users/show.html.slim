@@ -1,13 +1,19 @@
 .row.d-flex.justify-content-center
-  .col-7
+  .col-10
     .row 
       .col-10
         h5.my-4 = 'Статус пользователя'
     .row      
-      .col-5.mr-4
-        p= user.admin 
-        p= user.email 
-        p= user.client_id
-
-br
-p= link_to 'Вернуться к списку', users_path, class: 'btn btn-success'
+      .col-2
+        = user.admin? ? 'Администратор:' : 'Сотрудник:' 
+      .col-10
+        - if user.client_id.present?
+          = Client.find(user.client_id).surname
+          span style='margin-left: 10px;' = Client.find(user.client_id).name          
+    .row
+      .col-2
+        = 'Эл.почта:'
+      .col-10
+        = user.email
+    br
+    p= link_to 'Вернуться к списку', users_path, class: 'btn btn-success'
