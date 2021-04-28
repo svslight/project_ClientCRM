@@ -4,6 +4,8 @@ nav.navbar.navbar-light style="background-color: #e3f2fd;"
 
     = link_to 'Пользователи', users_path, class: 'btn btn-outline-primary mr-3'
 
+    = link_to 'Роли', roles_path, class: 'btn btn-outline-primary mr-3'
+
     div.btn-group
       button.btn.btn-outline-primary.dropdown-toggle.mr-3 type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" Справочники
       ul.dropdown-menu
@@ -21,15 +23,16 @@ nav.navbar.navbar-light style="background-color: #e3f2fd;"
       - if user_signed_in?
         - if current_user.client_id.present?
           - client = Client.find(current_user.client_id)
-          = client.name
+          span style='margin-left: 100px;' = 'Сотрудник:'
           span style='margin-left: 7px;' = client.surname
+          span style='margin-left: 7px;' = client.name
         - else
-          span style='margin-left: 100px;' = 'Администратор'      
+          span style='margin-left: 100px;' = 'Администратор'
 
     div.ml-auto
       - if user_signed_in?        
-        = link_to 'Log out', destroy_user_session_path, method: :delete, class: 'btn btn-outline-primary'
+        = link_to 'Выход', destroy_user_session_path, method: :delete, class: 'btn btn-outline-primary'
       - else
-        = link_to 'Sign in', new_user_session_path, class: 'btn btn-outline-primary mr-3'
-        = link_to 'Sign up', new_user_registration_path, class: 'btn btn-outline-primary'
+        = link_to 'Вход', new_user_session_path, class: 'btn btn-outline-primary mr-3'
+        = link_to 'Регистрация', new_user_registration_path, class: 'btn btn-outline-primary'
       

@@ -10,6 +10,8 @@ class UsersController < ApplicationController
 
   def update
     user.update(user_params)
+
+    User.role_user_append(user)
   end
 
   def destroy
@@ -24,6 +26,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :admin, :client_id)
+    params.require(:user).permit(:email, :admin, :client_id, :rids)
   end
 end

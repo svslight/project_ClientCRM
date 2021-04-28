@@ -1,0 +1,18 @@
+li.list-group-item id= "role-#{role.id}"
+  .row.d-flex.align-items-center
+    .col-1
+    .col-6
+      table#table.table-hover.table-sm
+        .tr
+          td
+            span id= "name-#{role.id}"
+              = role.name
+            = render partial: 'form', locals: { role: role }
+
+    .col-5
+      nav.nav.justify-content-end.btn-group-sm
+        = link_to 'Show', role, class: 'btn btn-info mr-4'
+        - if can?(:update, role)
+          = link_to 'Edit', '#', class: 'edit-role-link btn btn-info mr-4', data: { role_id: role.id }
+        - if can?(:destroy, role)
+          = link_to 'Delete', role, method: :delete, remote: true, class: 'btn btn-info'

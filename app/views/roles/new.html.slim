@@ -1,0 +1,14 @@
+.row.d-flex.justify-content-center
+  .col-10
+    h5.my-3 Форма для ввода роли
+   
+    p= form_with model: role, class: 'new-role' do |f|
+      p= render 'shared/errors', resource: role
+
+      .row
+        .col-6
+          = f.label :name, 'Роль', class: 'mr-3 mt-2'
+          = f.text_field :name
+        .col-6
+          = f.submit 'Создать', class: 'btn btn-success mr-3'
+          = link_to 'Отменить', roles_path, class: 'btn btn-success'
