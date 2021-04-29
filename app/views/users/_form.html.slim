@@ -20,7 +20,19 @@
       .row
         .col-2 
         .col-2
-          = f.label :email, 'Эл.почта'
+          = f.label :first_name, 'Имя:'
+        .col-8
+          - if user.client_id.present?
+            = Client.find(user.client_id).name
+            span style='margin-left: 10px;' = Client.find(user.client_id).surname
+          - else
+            = f.text_field :first_name, placeholder: "Имя"
+            span style='margin-left: 10px;' = f.text_field :last_name, placeholder: "Фамилия"
+
+      .row
+        .col-2 
+        .col-2
+          = f.label :email, 'Эл.почта:'
         .col-8
           = f.text_field :email      
 
@@ -28,7 +40,7 @@
         .col-2
         .col-2
           - roles = Role.find(user.role_users.pluck(:role_id))
-          = f.label :role_id, 'Роли'
+          = f.label :role_id, 'Роли:'
         .col-3
           = f.collection_select(:role_id, Role.all, :id, :name, {prompt: "Выбери роль"}, { class: 'role-form'})
           = f.text_field :rids, type: 'hidden', data: {user: user.id}, value: roles.pluck(:id).join(' ')

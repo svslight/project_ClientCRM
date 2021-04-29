@@ -8,12 +8,23 @@
         = user.admin? ? 'Администратор:' : 'Сотрудник:' 
       .col-10
         - if user.client_id.present?
-          = Client.find(user.client_id).surname
-          span style='margin-left: 10px;' = Client.find(user.client_id).name          
+          = Client.find(user.client_id).name
+          span style='margin-left: 10px;' = Client.find(user.client_id).surname
+        - else
+          = user.first_name
+          span style='margin-left: 7px;' = user.last_name                  
     .row
       .col-2
         = 'Эл.почта:'
       .col-10
         = user.email
+    .row
+      .col-2
+        = 'Роли:'
+      .col-10
+        - roles = Role.find(user.role_users.pluck(:role_id))
+        - roles.each do |role|
+          p= role.name
+
     br
     p= link_to 'Вернуться к списку', users_path, class: 'btn btn-success'

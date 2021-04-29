@@ -26,8 +26,11 @@ nav.navbar.navbar-light style="background-color: #e3f2fd;"
           span style='margin-left: 100px;' = 'Сотрудник:'
           span style='margin-left: 7px;' = client.surname
           span style='margin-left: 7px;' = client.name
-        - else
+        - else          
+          - user = User.find(current_user.id)
           span style='margin-left: 100px;' = 'Администратор'
+          span style='margin-left: 7px;' = user.first_name
+          span style='margin-left: 7px;' = user.last_name
 
     div.ml-auto
       - if user_signed_in?        

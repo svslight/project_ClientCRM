@@ -12,6 +12,8 @@ class UsersController < ApplicationController
     user.update(user_params)
 
     User.role_user_append(user)
+
+    redirect_to users_path
   end
 
   def destroy
@@ -26,6 +28,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :admin, :client_id, :rids)
+    params.require(:user).permit(:email, :admin, :client_id, 
+                                 :type, :first_name, :last_name, :rids)
   end
 end
