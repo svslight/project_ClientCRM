@@ -8,14 +8,14 @@
         .col-10
           h5.my-3 Форма редактирования пользователя
 
-      .row
-        .col-2
-        .col-2
-          = 'Статус:'
-        .col-8
-          - user.admin = User.find(user.id).admin
-          = f.check_box :admin
-          = user.admin? ? 'Администратор' : 'Сотрудник'
+      / .row
+      /   .col-2
+      /   .col-2
+      /     = 'Статус:'
+      /   .col-8
+      /     - user.admin = User.find(user.id).admin
+      /     = f.check_box :admin
+      /     = user.admin? ? 'Администратор' : 'Сотрудник'
 
       .row
         .col-2 

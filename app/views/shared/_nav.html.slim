@@ -35,7 +35,7 @@ nav.navbar.navbar-light style="background-color: #e3f2fd;"
     div.ml-auto
       - if user_signed_in?        
         = link_to 'Выход', destroy_user_session_path, method: :delete, class: 'btn btn-outline-primary'
-      - else
-        = link_to 'Вход', new_user_session_path, class: 'btn btn-outline-primary mr-3'
-        = link_to 'Регистрация', new_user_registration_path, class: 'btn btn-outline-primary'
+      / - else
+      /   = link_to 'Вход', new_user_session_path, class: 'btn btn-outline-primary mr-3'
+      /   = link_to 'Регистрация', new_user_registration_path, class: 'btn btn-outline-primary'
       

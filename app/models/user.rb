@@ -13,7 +13,11 @@ class User < ApplicationRecord
 
   validates :email, :uniqueness => true
 
-  default_scope { order(admin: :desc) }
+  default_scope { order(first_name: :asc) }
+
+  def admin?
+    Role.find(self.role_users.pluck(:role_id)).pluck(:name).include?('Администратор')   
+  end
 
   private
 

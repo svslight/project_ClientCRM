@@ -31,7 +31,7 @@ class Client < ApplicationRecord
 
   def self.make_user(client)
     if client.make_user
-      User.create(client_id: client.id, email: client.email, password: '123456', password_confirmation: '123456') if !user_exists?(client)
+      User.create(first_name: client.name, last_name: client.surname, client_id: client.id, email: client.email, password: '123456', password_confirmation: '123456') if !user_exists?(client)
     else
       client.user.destroy if user_exists?(client)      
     end

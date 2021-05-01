@@ -8,6 +8,11 @@ class UsersController < ApplicationController
 
   authorize_resource
 
+  def create
+    User.create(user_params)
+    redirect_to users_path
+  end
+
   def update
     user.update(user_params)
 
@@ -28,7 +33,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :admin, :client_id, 
-                                 :type, :first_name, :last_name, :rids)
+    params.require(:user).permit(:email, :client_id, :first_name, :last_name, :rids)
   end
 end
