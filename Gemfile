@@ -29,11 +29,15 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'slim-rails'
 gem 'devise'
+
 # Helper for creating declarative interfaces in controllers
 gem 'decent_exposure', '3.0.0'
 gem 'jquery-rails'
 
 gem 'cancancan'
+
+gem 'mysql2'
+gem 'thinking-sphinx'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
