@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { sessions: "users/sessions", registrations: 'users/registrations' }
 
+  get :search, to: 'search#index'
+
   root to: "clients#index"
 
   match '/countries/cancel', to: 'countries#cancel', via: 'get'
