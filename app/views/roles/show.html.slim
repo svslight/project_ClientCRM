@@ -2,10 +2,41 @@
   .col-7
     .row 
       .col-10
-        h5.my-4 = 'Роли'
+        h5.my-4 = 'Информация о роли'
     .row      
-      .col-5.mr-4
-        p= role.name
+      .col-4
+        = 'Наименование:'
+      .col-8
+        = role.name
+    .row
+      .col-4
+        = 'Код:'
+      .col-8
+        = role.code
+    br
+    .row
+      .col-12
+        h7 Права:
+    .row
+      .col-2
+        = 'Чтение'
+      .col-10
+        = role.role_read
+    .row
+      .col-2
+        = 'Создание'
+      .col-10
+        = role.role_create
+    .row
+      .col-2
+        = 'Обновение'
+      .col-10
+        = role.role_update
+    .row
+      .col-2
+        = 'Удаление'
+      .col-10
+        = role.role_destroy
 
     br
     p= link_to 'Вернуться к списку', roles_path, class: 'btn btn-success'

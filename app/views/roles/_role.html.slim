@@ -4,10 +4,10 @@ li.list-group-item id= "role-#{role.id}"
     .col-6
       table#table.table-hover.table-sm
         .tr
-          td
-            span id= "name-#{role.id}"
-              = role.name
-            = render partial: 'form', locals: { role: role }
+          td= role.name
+            / span id= "name-#{role.id}"
+            /   = role.name
+            / = render partial: 'form', locals: { role: role }
 
     .col-5
       nav.nav.justify-content-end.btn-group-sm
@@ -16,3 +16,5 @@ li.list-group-item id= "role-#{role.id}"
           = link_to 'Edit', '#', class: 'edit-role-link btn btn-info mr-4', data: { role_id: role.id }
         - if can?(:destroy, role)
           = link_to 'Delete', role, method: :delete, remote: true, class: 'btn btn-info'
+  
+  = render partial: 'form', locals: { role: role }

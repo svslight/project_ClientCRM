@@ -23,7 +23,14 @@ class Ability
   end
   
   def user_abilities
-    can :read, :all
-    can %i[create update], [Client, Status, Group, GroupStatus, GroupPosition, Project, TeamPosition]
+    # can :read, :all
+    # can %i[create update], [Client, Status, Group, GroupStatus, GroupPosition, Project, TeamPosition]
+
+    user.roles.each do |role|
+      can :read, role.role_read.strip.split(/\s/).include?('all') ? :all : role.role_read.strip.split(/\s/)
+      can :create, role.role_create.strip.split(/\s/).include?('all') ? :all : role.role_create.strip.split(/\s/)
+      can :update, role.role_update.strip.split(/\s/).include?('all') ? :all : role.role_update.strip.split(/\s/)
+      can :destroy, role.role_destroy.strip.split(/\s/).include?('all') ? :all : role.role_destroy.strip.split(/\s/)
+    end
   end
 end
