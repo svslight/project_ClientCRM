@@ -7,7 +7,10 @@ class ApplicationController < ActionController::Base
 
   # обработчик исключений: вызов стандартного сообщения
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to new_user_session_path, alert: exception.message
+    respond_to do |format|
+      format.html { redirect_to new_user_session_path, alert: exception.message }
+      format.js { render nothing: true, status: :forbidden }
+    end 
   end
 
   check_authorization unless: :devise_controller?

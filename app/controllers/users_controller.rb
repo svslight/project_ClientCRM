@@ -9,15 +9,17 @@ class UsersController < ApplicationController
   authorize_resource
 
   def create
-    User.create(user_params)
-    redirect_to users_path
+    @user=User.new(user_params)
+
+    if @user.save
+      redirect_to users_path
+    else
+      render new
+    end
   end
 
   def update
     user.update(user_params)
-
-    User.role_user_append(user)
-
     redirect_to users_path
   end
 

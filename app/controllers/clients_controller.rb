@@ -9,11 +9,7 @@ class ClientsController < ApplicationController
   authorize_resource
 
   def create
-    if client.save
-      Client.status_client_append(client)
-      Client.project_team_append(client)
-      Client.make_user(client)
-      
+    if client.save_all    
       redirect_to client_path(client), notice: 'Client was successfully created'
     else
       render :new
@@ -22,16 +18,10 @@ class ClientsController < ApplicationController
 
   def update
     client.update(client_params)
-    Client.status_client_append(client)
-    Client.project_team_append(client)
-    Client.make_user(client)    
-
     redirect_to clients_path
   end
 
   def destroy
-    # authorize! :destroy, @client
-
     client.destroy
     redirect_to clients_path, notice: 'Client was successfully deleted.'
   end

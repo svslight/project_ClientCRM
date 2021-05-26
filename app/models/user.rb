@@ -4,7 +4,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable        
 
   belongs_to :client, optional: true
 
@@ -12,21 +12,22 @@ class User < ApplicationRecord
   has_many :roles, through: :role_users
 
   validates :email, :uniqueness => true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
 
   default_scope { order(first_name: :asc) }
 
   def admin?
-    Role.find(self.role_users.pluck(:role_id)).pluck(:name).include?('Администратор')   
+    self.roles.pluck(:code).include?('admin')
   end
 
-  private
+  def update(user_params)
+    super
 
-  def self.role_user_append(user)
-    user.role_users.each{ |s| s.delete } if user.role_users.present?
-    @rids = user.rids.to_s.split(/\s/)
+    self.role_users.each{ |s| s.delete } if self.role_users.present?
+    @rids = self.rids.to_s.split(/\s/)
     @rids.each do |rid|
-      role_user = RoleUser.create(user: user, role: Role.find(rid))
+      RoleUser.create(user: self, role: Role.find(rid))
     end
   end
-
 end
