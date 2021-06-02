@@ -8,7 +8,7 @@ class Ability
   def initialize(user)
     
     if user
-      !user.admin? ? user_abilities : admin_abilities
+      !user.admin? ? user_abilities(user) : admin_abilities
     else
       guest_abilities
     end
@@ -22,15 +22,14 @@ class Ability
     can :manage, :all
   end
   
-  def user_abilities
-    # can :read, :all
-    # can %i[create update], [Client, Status, Group, GroupStatus, GroupPosition, Project, TeamPosition]
-
+  def user_abilities(user)
     user.roles.each do |role|
-      can :read, role.role_read.strip.split(/\s/).include?('all') ? :all : role.role_read.strip.split(/\s/)
-      can :create, role.role_create.strip.split(/\s/).include?('all') ? :all : role.role_create.strip.split(/\s/)
-      can :update, role.role_update.strip.split(/\s/).include?('all') ? :all : role.role_update.strip.split(/\s/)
-      can :destroy, role.role_destroy.strip.split(/\s/).include?('all') ? :all : role.role_destroy.strip.split(/\s/)
+      [:read, :create, :update, :destroy].each { |action| can action, class_list( "role_#{action.to_s}", role)  }      
     end
+  end
+
+  def class_list(role_action, role)
+    ability_classes = role.send(role_action).strip.split(/\s/)
+    ability_classes.include?('all') ? :all : ability_classes.collect{ |c| c.constantize }
   end
 end
