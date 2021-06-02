@@ -1,0 +1,26 @@
+ru:
+  hello: "Привет, Мир!"
+
+  roles:
+    index: 
+      title: 'Роли'    
+    new:
+      title: 'Добавить роль'
+
+  activerecord:
+    models:
+      Role: 'Роли'
+      RoleUser: 'Роли пользователя'
+      User: 'Пользователи'
+      Client: 'Клиенты'
+      Status: 'Статусы'
+      StatusClient: 'Статус клиента'
+      Country: 'Страны'
+      GroupStatus: 'Статусы групп'
+      Group: 'Группы по городам'
+      GroupPosition: 'Должности в группе'
+      Project: 'Проекты'            
+      ProjectTeam: 'Командные проекты'
+      TeamPosition: 'Должности в проекте'
+      SchemaMigration: Схема
+      ArInternalMetadatum: Метаданные

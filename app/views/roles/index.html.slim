@@ -2,11 +2,13 @@
   .row.d-flex.align-items-center.py-3
     .col-1
     .col-6
-      h5= 'Роли'
+      / h5= 'Роли'
+      h5= t('.title')
     .col-4
       nav.nav.justify-content-end
         - if can?(:create, role)
-          p= link_to 'Добавить роль', new_role_path, class: 'btn btn-success btn-sm'
+          / p= link_to 'Добавить роль', new_role_path, class: 'btn btn-success btn-sm'
+          p= link_to t('roles.new.title'), new_role_path, class: 'btn btn-success btn-sm'
     .col-1
 
 ul.list-group.list-group-flush

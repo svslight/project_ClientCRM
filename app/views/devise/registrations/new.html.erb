@@ -1,39 +1,50 @@
-<h2>Регистрация</h2>
+<div class="row justify-content-center mt-5">
+  <div class="col col-md-6">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="card-header mt-4">
+      <h4><%= t('.header') %> </h4>
+    </div>
 
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, placeholder: "Имя" %>
-  </div>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name, placeholder: "Фамилия" %>
-  </div>
+      <div class="form-group mt-4">
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+        <p>
+          <%= f.label :first_name %><br />
+          <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
+        </p>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+        <p>
+          <%= f.label :last_name %><br />
+          <%= f.text_field :last_name, autocomplete: "last_name" %>
+        </p>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+        <p>
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autocomplete: "email" %>
+        </p>
 
-  <div class="actions">
-    <%= f.submit "Сохранить" %>
-  </div>
-<% end %>
+        <p>
+          <%= f.label :password %>
+          <% if @minimum_password_length %>
+          <em>(<%= t('.characters_min', length: @minimum_password_length) %>)</em>
+          <% end %><br />
+          <%= f.password_field :password, autocomplete: "new-password" %>
+        </p>
 
-<%= render "devise/shared/links" %>
+        <p>
+          <%= f.label :password_confirmation %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        </p>
+
+        <p>
+          <%= f.submit t('.sign_up'), class: 'btn btn-primary' %>
+        </p>
+      
+      </div>
+    <% end %>
+
+    <div class="mt-2">
+      <%= render "devise/shared/links" %>
+    </div>
