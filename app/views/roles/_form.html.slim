@@ -38,7 +38,7 @@
           = f.text_field :role_read, type: 'hidden', class: 'read', data: {role: role.id}, value: read_models.join(' ')
         .col-5.models data-action='read'
           - read_models.each do |model|
-            span= model
+            span= model == 'All' ? 'Все' : t("activerecord.models.#{model}")
             i.fa.fa-times.cross style='font-size: 12px; margin: 0 10px 0 5px; color: red;' data-model=model data-role=role.id data-action='read'
 
       .row 
@@ -52,7 +52,7 @@
           = f.text_field :role_create, type: 'hidden', class: 'create', data: {role: role.id}, value: create_models.join(' ')          
         .col-5.models data-action='create'
           - create_models.each do |model|
-            span= model
+            span= model == 'All' ? 'Все' : t("activerecord.models.#{model}")
             i.fa.fa-times.cross style='font-size: 12px; margin: 0 10px 0 5px; color: red;' data-model=model data-role=role.id data-action='create'
 
       .row 
@@ -66,7 +66,7 @@
           = f.text_field :role_update, type: 'hidden', class: 'update', data: {role: role.id}, value: update_models.join(' ')          
         .col-5.models data-action='update'
           - update_models.each do |model|
-            span= model
+            span= model == 'All' ? 'Все' : t("activerecord.models.#{model}")
             i.fa.fa-times.cross style='font-size: 12px; margin: 0 10px 0 5px; color: red;' data-model=model data-role=role.id data-action='update'
       .row 
         .col-2
@@ -79,7 +79,7 @@
           = f.text_field :role_destroy, type: 'hidden', class: 'destroy', data: {role: role.id}, value: destroy_models.join(' ')           
         .col-5.models data-action='destroy'
           - destroy_models.each do |model|
-            span= model
+            span= model == 'All' ? 'Все' : t("activerecord.models.#{model}")
             i.fa.fa-times.cross style='font-size: 12px; margin: 0 10px 0 5px; color: red;' data-model=model data-role=role.id data-action='destroy'
 
       .row

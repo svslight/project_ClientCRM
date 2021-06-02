@@ -58,12 +58,18 @@ en:
       new:
         header: "SignUp in CRM system"
         sign_up: "Sign Up"
-        characters_min: "%{length} characters minimum" 
-
+        characters_min: "%{length} characters minimum"
     sessions:
       signed_in: "Signed in successfully."
       signed_out: "Signed out successfully."
       already_signed_out: "Signed out successfully."
+      new:
+        header: "Enter in CRM system"
+        login: "Log In"
+        remember_me: "Remember!"
+        enter_email: "Enter email"
+        password: "Password"
+
     unlocks:
       send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
       send_paranoid_instructions: "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes."

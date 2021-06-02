@@ -7,9 +7,29 @@ $(document).on('turbolinks:load', function(){
     $('form#edit-role-' + roleId).removeClass('hidden');
   });
 
+  t = {
+    All: 'Все',
+    Role: 'Роли',
+    RoleUser: 'Роли пользователя',
+    User: 'Пользователи',
+    Client: 'Клиенты',
+    Status: 'Статусы',
+    StatusClient: 'Статус клиента',
+    Country: 'Страны',
+    GroupStatus: 'Статусы групп',
+    Group: 'Группы по городам',
+    GroupPosition: 'Должности в группе',
+    Project: 'Проекты',
+    ProjectTeam: 'Командные проекты',
+    TeamPosition: 'Должности в проекте',
+    SchemaMigration: 'Схема',
+    ArInternalMetadatum: 'Метаданные'
+  };
+
   // Определение прав
   $('select.model-form').on('change', function(e) {
     e.preventDefault();
+
     console.log('Append model!');
     model = $(this).val();
     roleId = $(this).next().data('role')
@@ -19,7 +39,7 @@ $(document).on('turbolinks:load', function(){
     console.log('roleId=', roleId);
     $(this).next().val($(this).next().val() + ' ' + model)
     console.log('Input=', $(this).next().val());
-    $('.models[data-action=' + action + ']').append('<span>' + model + '</span>')
+    $('.models[data-action=' + action + ']').append('<span>' + t[model] + '</span>')
     $('.models[data-action=' + action + ']').append('<i class="fa fa-times cross" style="font-size: 12px; margin: 0 10px 0 5px; color: red;" data-model="' + model + '" data-role="' + roleId + '">')
   });
 

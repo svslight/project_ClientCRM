@@ -45,7 +45,7 @@ class RolesController < ApplicationController
         model_names << [t('activerecord.models.' + model_en), model_en]
       end
     end
-    @models = [["Все", "all"]] + model_names.sort
+    @models = [["Все", "All"]] + model_names.sort
   end
 
   def load_role

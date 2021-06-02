@@ -61,17 +61,19 @@ ru:
       signed_out: "Выход из системы выполнен."
       already_signed_out: "Выход из системы выполнен."
       new:
-        # header: "Вход в TestGuru"
+        header: "Вход в CRM систему"
         login: "Авторизоваться"
         remember_me: "Запомнить!"
         enter_email: "Введите email"
         password: "Пароль"
+
     shared:
       links:
         forgot: "Забыли свой пароль?"
         confirm_instruction: "Не получили подтверждение инструкции?"
         unlock_instruction: "Не получили инструкции по разблокировке?"
         sign_in_with: "Войти в систему с %{provider}"
+        
     unlocks:
       send_instructions: "В течение нескольких минут вы получите письмо с инструкциями по разблокировке вашей учётной записи."
       send_paranoid_instructions: "Если ваша учётная запись существует, то в течение нескольких минут вы получите письмо с инструкциями по её разблокировке."
