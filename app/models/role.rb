@@ -9,9 +9,10 @@ class Role < ApplicationRecord
   private
 
   def control_all
-    self.role_read = 'all' if self.role_read.include? 'all'
-    self.role_create = 'all' if self.role_create.include? 'all'
-    self.role_update = 'all' if self.role_update.include? 'all'
-    self.role_destroy = 'all' if self.role_destroy.include? 'all'
+    self.role_read = 'All' if self.role_read.include? 'All'
+    self.role_create = 'All' if self.role_create.include? 'All'
+    self.role_update = 'All' if self.role_update.include? 'All'
+    self.role_destroy = 'All' if self.role_destroy.include? 'All'
   end
+
 end

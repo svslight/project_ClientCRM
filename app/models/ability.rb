@@ -30,6 +30,6 @@ class Ability
 
   def class_list(role_action, role)
     ability_classes = role.send(role_action).strip.split(/\s/)
-    ability_classes.include?('all') ? :all : ability_classes.collect{ |c| c.constantize }
+    ability_classes.include?('All') ? :all : ability_classes.collect{ |c| c.constantize }
   end
 end
