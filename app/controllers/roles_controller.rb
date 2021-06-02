@@ -36,16 +36,16 @@ class RolesController < ApplicationController
 
   private
 
+  # Список моделей с переводом
   def model_list
-    @models = ["all"] + models.sort
-    @models.delete("SchemaMigration")
-    @models.delete("ArInternalMetadatum")
-  end
-
-  def models
-    ActiveRecord::Base.connection.tables.map do |model|
-      model.capitalize.singularize.camelize
+    model_names = []    
+    ActiveRecord::Base.connection.tables.map do |model|      
+      model_en = model.capitalize.singularize.camelize
+      if !["SchemaMigration", "ArInternalMetadatum"].include?(model_en)
+        model_names << [t('activerecord.models.' + model_en), model_en]
+      end
     end
+    @models = [["Все", "all"]] + model_names.sort
   end
 
   def load_role
