@@ -8,6 +8,11 @@ class GroupsController < ApplicationController
   
   authorize_resource
 
+  def list
+    @client = Client.new
+    @list_clients = Client.list_clients(params[:city])
+  end
+
   def create
     if group.save
       redirect_to group_path(group), notice: 'Group successfully created'

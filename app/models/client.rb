@@ -22,6 +22,7 @@ class Client < ApplicationRecord
   validates :email, presence: true
 
   default_scope { order(surname: :asc) }
+  scope :list_clients, ->(city) { where(city: city) }
 
   def save_all
     self.save

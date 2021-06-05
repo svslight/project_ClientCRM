@@ -1,0 +1,30 @@
+.bg-light.border-bottom
+  .row.d-flex.align-items-center.py-3
+    .col-1
+    .col-6
+      h5= "Список членов группы города #{params[:city]}"
+    .col-4
+      nav.nav.justify-content-end
+        - if can?(:create, @client)
+          p= link_to 'Добавить члена группы', new_client_path, class: 'btn btn-success btn-sm'
+    .col-1
+
+ul.list-group.list-group-flush
+  - @list_clients.each do |list_client|
+    li.list-group-item
+      .row.d-flex.align-items-center
+        .col-1
+        .col-6
+          table#table.table-hover.table-sm
+            .tr
+              td= list_client.name
+              td= list_client.surname
+              td= list_client.patronymic 
+              td= list_client.phon
+              td= list_client.email
+
+        .col-5
+          nav.nav.justify-content-end.btn-group-sm
+            = link_to 'Show', client_path(list_client, back: groups_list_path(city: params[:city])), class: 'btn btn-info mr-4'
+  br
+  p= link_to 'Вернуться к списку', groups_path, class: 'btn btn-success btn-sm'
