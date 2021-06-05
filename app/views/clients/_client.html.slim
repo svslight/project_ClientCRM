@@ -9,7 +9,7 @@ li.list-group-item id = "client-#{client.id}"
           td= client.patronymic
 
     .col-5
-      nav.nav.justify-content-end
+      nav.nav.justify-content-end.btn-group-sm
         = link_to 'Show', client, class: 'btn btn-info mr-4'
         - if can?(:update, client)
           = link_to 'Edit', '#', class: 'edit-client-link btn btn-info mr-4', data: { client_id: client.id }
