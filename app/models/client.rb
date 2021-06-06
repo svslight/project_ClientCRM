@@ -23,6 +23,7 @@ class Client < ApplicationRecord
 
   default_scope { order(surname: :asc) }
   scope :list_clients, ->(city) { where(city: city) }
+  scope :list_project_clients, ->(id) { joins(:project_teams).where(project_teams:  {project_id: id} ) }
 
   def save_all
     self.save

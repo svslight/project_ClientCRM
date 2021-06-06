@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   match '/countries/cancel', to: 'countries#cancel', via: 'get'
   match '/groups/list', to: 'groups#list', via: 'get'
+  match '/projects/list', to: 'projects#list', via: 'get'
 
   resources :clients, :countries, :statuses, :group_statuses, :groups, :group_positions, 
             :projects, :team_positions, :users, :roles

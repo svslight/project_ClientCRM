@@ -7,6 +7,11 @@ class ProjectsController < ApplicationController
   expose :project
 
   authorize_resource
+
+  def list
+    @client = Client.new
+    @list_project_clients = Client.list_project_clients(params[:id])
+  end
   
   def create
     if project.save

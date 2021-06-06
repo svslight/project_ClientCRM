@@ -1,0 +1,30 @@
+.bg-light.border-bottom
+  .row.d-flex.align-items-center.py-3
+    .col-1
+    .col-6
+      h5= "Список членов в командном поекте #{params[:name]}"
+    .col-4
+      nav.nav.justify-content-end
+        - if can?(:create, @client)
+          p= link_to 'Добавить члена в проект', new_project_path, class: 'btn btn-success btn-sm'
+    .col-1
+
+ul.list-group.list-group-flush
+  - @list_project_clients.each do |list_project_client|
+    li.list-group-item
+      .row.d-flex.align-items-center
+        .col-1
+        .col-6
+          table#table.table-hover.table-sm
+            .tr
+              td= list_project_client.name
+              td= list_project_client.surname
+              td= list_project_client.patronymic 
+              td= list_project_client.phon
+              td= list_project_client.email
+
+        .col-5
+          nav.nav.justify-content-end.btn-group-sm
+            = link_to 'Show', client_path(list_project_client, back: projects_list_path(id: params[:id])), class: 'btn btn-info mr-4'
+  br
+  p= link_to 'Вернуться к списку', projects_path, class: 'btn btn-success btn-sm'
