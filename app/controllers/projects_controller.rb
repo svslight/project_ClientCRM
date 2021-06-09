@@ -10,7 +10,7 @@ class ProjectsController < ApplicationController
 
   def list
     @client = Client.new
-    @list_project_clients = Client.list_project_clients(params[:id])
+    @list_clients_by_project = Client.list_clients_by_project(params[:id])
   end
   
   def create
