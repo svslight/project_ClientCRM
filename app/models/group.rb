@@ -10,4 +10,8 @@ class Group < ApplicationRecord
   validates :phon, presence: true
 
   default_scope { order(name: :asc) }
+
+  def self.select_groups_by_status(group_status_id)
+    group_status_id.empty? ? all : where(group_status_id: group_status_id)   
+  end
 end

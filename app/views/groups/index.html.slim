@@ -1,9 +1,23 @@
 .bg-light.border-bottom
   .row.d-flex.align-items-center.py-3
     .col-1
-    .col-6
-      h5= 'Список групп организации'
     .col-4
+      h5= 'Список групп организации'
+    .col-3
+      = form_with model: group, url: groups_path, html: { id: "group_status", data: { remote: true }, method: 'get' } do |f|
+
+        div.form-check         
+          = f.text_field :group_status_id, html_options={class: 'form-check-input', type: 'radio', name: 'group_status_id', value: ''}
+          = f.label :group_status_id, 'Все'
+
+        - GroupStatus.all.each do |group_status|
+          div.form-check
+            = f.text_field :group_status_id, html_options={class: 'form-check-input', type: 'radio', name: 'group_status_id', value: group_status.id}
+            = f.label :group_status_id
+              = group_status.name
+        button.btn.btn-success.mb-3.btn-sm type="submit" Обновить список
+
+    .col-3
       nav.nav.justify-content-end
         - if can?(:create, group)
           p= link_to 'Добавить группу', new_group_path, class: 'btn btn-success btn-sm'
@@ -11,7 +25,6 @@
 
 ul.list-group.list-group-flush
   .group-errors
-    / = render 'shared/errors', resource: group
   .groups
-    = render groups
+    = render @groups
     

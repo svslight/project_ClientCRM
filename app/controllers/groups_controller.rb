@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
   before_action :load_group, only: [:update, :destroy]
 
-  expose :groups, ->{ Group.all }
+  expose :groups #, ->{ Group.all }
   expose :group
   
   authorize_resource
@@ -11,6 +11,13 @@ class GroupsController < ApplicationController
   def list
     @client = Client.new
     @list_clients = Client.list_clients(params[:city])
+  end
+
+  def index
+    respond_to do |format|
+      format.js { @groups = Group.select_groups_by_status(params[:group_status_id]) }
+      format.html { @groups = Group.all }
+    end
   end
 
   def create
