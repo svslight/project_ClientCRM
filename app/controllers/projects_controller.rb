@@ -6,6 +6,13 @@ class ProjectsController < ApplicationController
   expose :projects, ->{ Project.all }
   expose :project
 
+  authorize_resource
+
+  def list
+    @client = Client.new
+    @list_clients_by_project = Client.list_clients_by_project(params[:id])
+  end
+  
   def create
     if project.save
       redirect_to project_path(project), notice: 'Project successfully created'

@@ -22,34 +22,52 @@ class Client < ApplicationRecord
   validates :email, presence: true
 
   default_scope { order(surname: :asc) }
+  scope :list_clients, ->(city) { where(city: city) }
+  scope :list_clients_by_project, ->(id) { joins(:project_teams).where(project_teams: { project_id: id }) }
+
+  def save_all
+    self.save
+    update_tables
+  end
+
+  def update(client_params) 
+    super    
+    update_tables
+  end
 
   private
 
-  def self.user_exists?(client)
-    User.where(client_id: client).exists?
+  def update_tables
+    self.status_client_append
+    self.project_team_append
+    self.client_make_user
   end
 
-  def self.make_user(client)
-    if client.make_user
-      User.create(client_id: client.id, email: client.email, password: '123456', password_confirmation: '123456') if !user_exists?(client)
+  def user_exists?
+    User.where(client_id: self).exists?
+  end
+
+  def client_make_user
+    if self.make_user
+      User.create(first_name: self.name, last_name: self.surname, client_id: self.id, email: self.email, password: '123456', password_confirmation: '123456') if !user_exists?
     else
-      client.user.destroy if user_exists?(client)      
+      self.user.destroy if user_exists?     
     end
   end
 
-  def self.status_client_append(client)
-    client.status_clients.each{ |s| s.delete } if client.status_clients.present?
-    @ids = client.ids.to_s.split(/\s/)
+  def status_client_append
+    self.status_clients.each{ |s| s.delete } if self.status_clients.present?
+    @ids = self.ids.to_s.split(/\s/)
     @ids.each do |id|
-      status_client = StatusClient.create(client: client, status: Status.find(id))
+      StatusClient.create(client: self, status: Status.find(id))
     end
   end
 
-  def self.project_team_append(client)
-    client.project_teams.each{ |s| s.delete } if client.project_teams.present?
-    @pids = client.pids.to_s.split(/\s/)
+  def project_team_append
+    self.project_teams.each{ |s| s.delete } if self.project_teams.present?
+    @pids = self.pids.to_s.split(/\s/)
     @pids.each do |pid|
-      project_team = ProjectTeam.create(client: client, project: Project.find(pid))
+      ProjectTeam.create(client: self, project: Project.find(pid))
     end
   end
 end

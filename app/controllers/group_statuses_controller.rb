@@ -6,6 +6,8 @@ class GroupStatusesController < ApplicationController
   expose :group_statuses, ->{ GroupStatus.all }
   expose :group_status
 
+  authorize_resource
+  
   def create
     if group_status.save
       redirect_to group_status_path(group_status), notice: 'Status group successfully created'

@@ -29,16 +29,26 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'slim-rails'
 gem 'devise'
+
 # Helper for creating declarative interfaces in controllers
 gem 'decent_exposure', '3.0.0'
 gem 'jquery-rails'
+
+gem 'cancancan'
+
+gem 'mysql2'
+gem 'thinking-sphinx'
+
+# Centralization of locale data collection 
+gem 'rails-i18n', '~> 6.0.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 4.0.1'
   gem 'factory_bot_rails'
-  # gem 'capybara', '>= 3.26'
+  # Clean your ActiveRecord databases with Database Cleaner
+  gem 'database_cleaner-active_record'
 end
 
 group :development do

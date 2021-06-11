@@ -31,3 +31,9 @@
 
 en:
   hello: "Hello world"
+
+  # roles:
+  #   index: 
+  #     title: 'Роли'
+  #   new:
+  #     title: 'Добавить роль'

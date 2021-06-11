@@ -12,5 +12,7 @@ li.list-group-item id= "team-position-#{team_position.id}"
     .col-5
       nav.nav.justify-content-end.btn-group-sm
         = link_to 'Show', team_position, class: 'btn btn-info mr-4'
-        = link_to 'Edit', '#', class: 'edit-teamposition-link btn btn-info mr-4', data: { teamposition_id: team_position.id }
-        = link_to 'Delete', team_position, method: :delete, class: 'btn btn-info'
+        - if can?(:update, team_position)
+          = link_to 'Edit', '#', class: 'edit-teamposition-link btn btn-info mr-4', data: { teamposition_id: team_position.id }
+        - if can?(:destroy, team_position)
+          = link_to 'Delete', team_position, method: :delete, class: 'btn btn-info'

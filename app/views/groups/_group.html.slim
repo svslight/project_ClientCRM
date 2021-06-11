@@ -8,8 +8,11 @@ li.list-group-item id= "group-#{group.id}"
 
     .col-5
       nav.nav.justify-content-end.btn-group-sm
+        = link_to 'List clients', groups_list_path(city: group.city), class: 'btn btn-info mr-4'
         = link_to 'Show', group, class: 'btn btn-info mr-4'
-        = link_to 'Edit', '#', class: 'edit-group-link btn btn-info mr-4', data: { group_id: group.id }
-        = link_to 'Delete', group, method: :delete, class: 'btn btn-info'
+        - if can?(:update, group)
+          = link_to 'Edit', '#', class: 'edit-group-link btn btn-info mr-4', data: { group_id: group.id }
+        - if can?(:destroy, group)
+          = link_to 'Delete', group, method: :delete, class: 'btn btn-info'
   
   = render partial: 'form', locals: { group: group }

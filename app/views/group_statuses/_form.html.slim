@@ -1,7 +1,7 @@
 = form_with model: group_status, class: 'hidden', html: { id: "edit-groupstatus-#{group_status.id}", data: { remote: true } } do |f|
   = render 'shared/errors', resource: group_status
 
-  .row
+  .row.d-flex.align-items-center
     .col-5
       = f.label :name, 'Статус группы', class: "hidden"
       = f.text_field :name, class: 'form-control'

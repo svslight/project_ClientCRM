@@ -2,10 +2,11 @@
   .row.d-flex.align-items-center.py-3
     .col-1
     .col-6
-      h5= 'Список должностей в правлении групп'
+      h5= 'Должности в правлении групп'
     .col-4
       nav.nav.justify-content-end
-        p= link_to 'Добавить должность', new_group_position_path, class: 'btn btn-success btn-sm'
+        - if can?(:create, group_position)
+          p= link_to 'Добавить должность', new_group_position_path, class: 'btn btn-success btn-sm'
     .col-1
 
 ul.list-group.list-group-flush

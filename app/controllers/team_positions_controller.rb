@@ -6,6 +6,8 @@ class TeamPositionsController < ApplicationController
   expose :team_positions, ->{ TeamPosition.all }
   expose :team_position
 
+  authorize_resource
+  
   def create
     if team_position.save
       redirect_to team_position_path(team_position), notice: 'Team Position successfully created'

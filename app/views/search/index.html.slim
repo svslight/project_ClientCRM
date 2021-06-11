@@ -1,0 +1,11 @@
+.search_results
+  h3 Search results:
+  - if @search_results.empty?
+    span.result Your search for nothing was found.
+  - @search_results.each do |result|   
+  	- if result.is_a?(Client)
+  	  p= link_to(result.name, client_path(result), target: '_blank')
+  	- elsif result.is_a?(Group)
+  	  p= link_to(result.name, group_path(result.group), target: '_blank')
+    - else
+  	  p= result.email

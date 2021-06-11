@@ -117,4 +117,8 @@
         = client.comments
 
     br
-    p= link_to 'Вернуться к списку', clients_path, class: 'btn btn-success'
+    p
+      - if params[:back].present?
+        = link_to 'Вернуться к списку', params[:back], class: 'btn btn-success btn-sm'
+      - else
+        = link_to 'Вернуться к списку', clients_path, class: 'btn btn-success btn-sm'

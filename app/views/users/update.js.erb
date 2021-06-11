@@ -1,0 +1,6 @@
+$('.user-errors').html("<%= render 'shared/errors', resource: user %>");
+console.log('Update!');
+<% unless user.errors.present? %>
+  $('form#edit-user-' + <%= user.id %>).remove();
+  $('#user-' + <%= user.id %>).replaceWith("<%= j render user %>");
+<% end %>

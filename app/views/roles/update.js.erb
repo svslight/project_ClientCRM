@@ -1,0 +1,6 @@
+$('.role-errors').html("<%= render 'shared/errors', resource: role %>");
+console.log('Update');
+<% unless role.errors.present? %>
+  $('form#edit-role-' + <%= role.id %>).remove();
+  $('#role-' + <%= role.id %>).replaceWith("<%= j render role %>");
+<% end %>

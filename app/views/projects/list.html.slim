@@ -1,0 +1,25 @@
+.bg-light.border-bottom
+  .row.d-flex.align-items-center.py-3
+    .col-1
+    .col-11
+      h5= "Список членов проекта <#{project.name}>"
+
+ul.list-group.list-group-flush
+  - @list_clients_by_project.each do |list_clients|
+    li.list-group-item
+      .row.d-flex.align-items-center
+        .col-1
+        .col-6
+          table#table.table-hover.table-sm
+            .tr
+              td= list_clients.surname
+              td= list_clients.name
+              td= list_clients.patronymic 
+              td= list_clients.phon
+              td= list_clients.email
+
+        .col-5
+          nav.nav.justify-content-end.btn-group-sm
+            = link_to 'Show', client_path(list_clients, back: projects_list_path(id: params[:id])), class: 'btn btn-info mr-4'
+  br
+  p= link_to 'Вернуться к списку', projects_path, class: 'btn btn-success btn-sm'

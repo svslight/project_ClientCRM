@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_07_135341) do
+ActiveRecord::Schema.define(version: 2021_05_21_121228) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,6 +90,26 @@ ActiveRecord::Schema.define(version: 2021_04_07_135341) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "role_users", force: :cascade do |t|
+    t.bigint "role_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["role_id"], name: "index_role_users_on_role_id"
+    t.index ["user_id"], name: "index_role_users_on_user_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "code", default: "user", null: false
+    t.string "role_read", default: "", null: false
+    t.string "role_create", default: "", null: false
+    t.string "role_update", default: "", null: false
+    t.string "role_destroy", default: "", null: false
+  end
+
   create_table "status_clients", force: :cascade do |t|
     t.bigint "status_id", null: false
     t.bigint "client_id", null: false
@@ -120,6 +140,8 @@ ActiveRecord::Schema.define(version: 2021_04_07_135341) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.bigint "client_id"
+    t.string "first_name"
+    t.string "last_name"
     t.index ["client_id"], name: "index_users_on_client_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -133,6 +155,8 @@ ActiveRecord::Schema.define(version: 2021_04_07_135341) do
   add_foreign_key "groups", "group_statuses"
   add_foreign_key "project_teams", "clients"
   add_foreign_key "project_teams", "projects"
+  add_foreign_key "role_users", "roles"
+  add_foreign_key "role_users", "users"
   add_foreign_key "status_clients", "clients"
   add_foreign_key "status_clients", "statuses"
   add_foreign_key "users", "clients"

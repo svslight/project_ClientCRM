@@ -1,0 +1,49 @@
+= form_with model: user, class: 'hidden', html: { id: "edit-user-#{user.id}", data: { remote: true } } do |f|
+  = render 'shared/errors', resource: user
+
+  .row.d-flex.align-items-center
+    .col-12
+      .row
+        .col-2
+        .col-10
+          h5.my-3 Форма редактирования пользователя
+
+      .row
+        .col-2 
+        .col-2
+          = f.label :first_name, 'Имя:'
+        .col-8
+          - if user.client_id.present?
+            = Client.find(user.client_id).name
+            span style='margin-left: 10px;' = Client.find(user.client_id).surname
+          - else
+            = f.text_field :first_name, placeholder: "Имя"
+            span style='margin-left: 10px;' = f.text_field :last_name, placeholder: "Фамилия"
+
+      .row
+        .col-2 
+        .col-2
+          = f.label :email, 'Эл.почта:'
+        .col-8
+          = f.text_field :email      
+
+      .row
+        .col-2
+        .col-2
+          - roles = Role.find(user.role_users.pluck(:role_id))
+          = f.label :role_id, 'Роли:'
+        .col-3
+          = f.collection_select(:role_id, Role.all, :id, :name, {prompt: "Выбери роль"}, { class: 'role-form'})
+          = f.text_field :rids, type: 'hidden', data: {user: user.id}, value: roles.pluck(:id).join(' ')
+        .col-5.roles            
+          - roles.each do |role|
+            span= role.name
+            i.fa.fa-times.cross style='font-size: 12px; margin: 0 10px 0 5px; color: red;' data-user=user.id data-id=role.id
+
+      .row
+        .col-2
+        .col-10
+          br
+          = f.submit 'Сохранить', class: 'btn btn-sm btn-success mr-3'
+          = link_to 'Отменить', users_path, class: 'btn btn-sm btn-success'
+  

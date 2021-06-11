@@ -17,7 +17,7 @@
         .col-2
         .col-2
           - statuses = Status.find(client.status_clients.pluck(:status_id))
-          = f.label :status_id, 'Изменить статус'
+          = f.label :status_id, 'Статус клиента'
         .col-3
           = f.collection_select(:status_id, Status.all, :id, :name, {prompt: "Выбери статус клиента"}, { class: 'status-form'})
           = f.text_field :ids, type: 'hidden', data: {client: client.id}, value: statuses.pluck(:id).join(' ')
@@ -25,19 +25,6 @@
           - statuses.each do |status|
             span= status.name
             i.fa.fa-times.cross style='font-size: 12px; margin: 0 10px 0 5px; color: red;' data-client=client.id data-id=status.id
-
-      .row
-        .col-2
-        .col-2
-          - projects = Project.find(client.project_teams.pluck(:project_id))
-          = f.label :project_id, 'Изменить командный проект'
-        .col-3
-          = f.collection_select(:project_id, Project.all, :id, :name, {prompt: "Выбери командный проект"}, { class: 'project-form'})
-          = f.text_field :pids, type: 'hidden', data: {pclient: client.id}, value: projects.pluck(:id).join(' ')
-        .col-5.projects            
-          - projects.each do |project|
-            span= project.name
-            i.fa.fa-times.cross style='font-size: 12px; margin: 0 10px 0 5px; color: red;' data-pclient=client.id data-id=project.id
 
       .row
         .col-2
@@ -103,21 +90,27 @@
       .row
         .col-2      
         .col-2
-          = f.label :group_position_id, 'Должность'        
+          = f.label :group_position_id, 'Должность в правлении группы'        
         .col-8
           = f.collection_select(:group_position_id, GroupPosition.all, :id, :name, {prompt: "Выберите должность в группе"})
 
-      / .row
-      /   .col-2
-      /   .col-2
-      /     = f.label :team_project_id, 'Командный проект'
-      /   .col-8
-      /     = f.collection_select(:team_project_id, TeamProject.all, :id, :name, {prompt: "Выберите командный проект"})
+      .row
+        .col-2
+        .col-2
+          - projects = Project.find(client.project_teams.pluck(:project_id))
+          = f.label :project_id, 'Командный проект'
+        .col-3
+          = f.collection_select(:project_id, Project.all, :id, :name, {prompt: "Выбери командный проект"}, { class: 'project-form'})
+          = f.text_field :pids, type: 'hidden', data: {pclient: client.id}, value: projects.pluck(:id).join(' ')
+        .col-5.projects            
+          - projects.each do |project|
+            span= project.name
+            i.fa.fa-times.cross style='font-size: 12px; margin: 0 10px 0 5px; color: red;' data-pclient=client.id data-id=project.id
 
       .row
         .col-2      
         .col-2
-          = f.label :team_position_id, 'Должность'
+          = f.label :team_position_id, 'Должность в команде'
         .col-8
           = f.collection_select(:team_position_id, TeamPosition.all, :id, :name, {prompt: "Выберите должность в команде"})
 
@@ -146,5 +139,5 @@
         .col-2
         .col-10      
           br
-          = f.submit 'Сохранить', class: 'btn btn-success mr-3'
-          = link_to 'Отмена', clients_path, class: 'btn btn-success'
+          = f.submit 'Сохранить', class: 'btn btn-success btn-sm mr-3'
+          = link_to 'Отмена', clients_path, class: 'btn btn-success btn-sm'
